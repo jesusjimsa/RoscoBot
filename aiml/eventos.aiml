@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<aiml version="2.0">
+
+	<!-- Regla  -->
+	<category>
+		<pattern>^ [añad guard]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
+		<template>
+			De acuerdo, dime el año del evento
+			<think>
+				<set name="topic">nuevoEvento</set>
+			</think>
+		</template>
+	</category>
+
+	<topic name="nuevoEvento">
+		<!-- Regla  -->
+		<category>
+			<pattern><set>año_valido</set></pattern>
+			<that>DE ACUERDO, DIME EL AÑO DEL EVENTO</that>
+			<template>
+				Ahora dime el mes del evento
+				<think>
+					<set name="nuevoAnio"><star/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>DE ACUERDO, DIME EL AÑO DEL EVENTO</that>
+			<template>
+				Solo puedes decir uno del 2017 al 2027
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern><set>año_valido</set></pattern>
+			<that>SOLO PUEDES DECIR UNO DEL 2017 AL 2027</that>
+			<template>
+				Ahora dime el mes del evento
+				<think>
+					<set name="nuevoAnio"><star/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern><set>mes_valido</set></pattern>
+			<that>AHORA DIME EL MES DEL EVENTO</that>
+			<template>
+				Dime ahora el dia
+				<think>
+					<set name="nuevoMes"><map name="mes_numero"><star/></map></set> 
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern><set>mes_valido_num</set></pattern>
+			<that>AHORA DIME EL MES DEL EVENTO</that>
+			<template>
+				Dime ahora el dia
+				<think>
+					<set name="nuevoMes"><star/></set> 
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern><set>mes_valido_num</set></pattern>
+			<that>ESE MES NO EXISTE, INTRODUCE UN MES VALIDO</that>
+			<template>
+				Dime ahora el dia
+				<think>
+					<set name="nuevoMes"><star/></set> 
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>AHORA DIME EL MES DEL EVENTO</that>
+			<template>
+				Ese mes no existe, introduce un mes valido
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern><set>dias_validos</set></pattern>
+			<that>DIME AHORA EL DIA</that>
+			<template>
+				
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern><set>dias_validos</set></pattern>
+			<that>DIME AHORA EL DIA</that>
+			<template>
+				
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>DIME AHORA EL DIA</that>
+			<template>
+				Ese no es un dia valido
+			</template>
+		</category>
+	</topic>
+
+
+	</aiml>
