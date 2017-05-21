@@ -138,4 +138,21 @@
 			Bueno, qué quieres hacer
 		</template>
 	</category>
+
+	<!-- Regla 15 -->
+	<category>
+		<pattern>Que dia es</pattern>
+		<template>
+			<date jformat="dd/MM/yyyy"/>
+		</template>
+	</category>
+
+	<!-- Regla 16 -->
+	<category>
+		<pattern>Que hora es</pattern>
+		<template>
+			<date jformat="hh:mm"/>
+		</template>
+	</category>
+
 	</aiml>
