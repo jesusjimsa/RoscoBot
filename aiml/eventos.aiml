@@ -74,6 +74,18 @@
 				Dime ahora el dia
 				<think>
 					<set name="nuevoMes"><star index="2"/></set> 
+					<condition name="nuevoMes">
+						<li value="0"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="1"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="2"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="3"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="4"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="5"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="6"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="7"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="8"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="9"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+					</condition>
 				</think>
 			</template>
 		</category>
@@ -85,7 +97,19 @@
 			<template>
 				Dime ahora el dia
 				<think>
-					<set name="nuevoMes"><star index="2"/></set> 
+					<set name="nuevoMes"><star index="2"/></set>
+					 <condition name="nuevoMes">
+						<li value="0"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="1"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="2"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="3"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="4"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="5"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="6"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="7"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="8"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+						<li value="9"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+					</condition>
 				</think>
 			</template>
 		</category>
@@ -107,7 +131,6 @@
 				Ya tenemos la fecha, vamos ahora con la hora, primero dime la hora y despues si es a y media o no
 				<think>
 					<set name="nuevoDia"><star index="2"/></set>
-
 					<condition name="nuevoDia">
 						<li value="1"><set name="nuevoDia">01</set></li>
 						<li value="2"><set name="nuevoDia">02</set></li>
@@ -197,6 +220,14 @@
 				<think>
 					<set name="nuevaHora"><get name="nuevaHora"/>00</set>
 				</think>
+				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/>
+				<think>
+					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set> 
+				</think>
+				Va alguien contigo?
+				<think>
+					<set name="topic">invitados</set>
+				</think>
 			</template>
 		</category>
 
@@ -208,8 +239,20 @@
 				<think>
 					<set name="nuevaHora"><get name="nuevaHora"/>30</set>
 				</think>
+				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/>
+				<think>
+					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set> 
+				</think>
+				Va alguien contigo?
+				<think>
+					<set name="topic">invitados</set>
+				</think>
 			</template>
 		</category>
+
+		<topic name="invitados">
+			
+		</topic>
 	</topic>
 
 	</aiml>
