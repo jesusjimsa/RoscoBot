@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<aiml version="2.0">
 
+	<!-- Falta:
+			- Agregar evento
+			- Cantidad de eventos
+			- Modificar invitados, fecha, hora y título
+			- Borrar evento, preguntando
+			- Contar eventos de una fecha
+														-->
+
 	<!-- Regla  -->
 	<category>
-		<pattern>^ [añad guard]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
+		<pattern>^ [añad guard nuevo]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
 		<template>
 			De acuerdo, dime el año del evento
 			<think>
@@ -15,12 +23,12 @@
 	<topic name="nuevoEvento">
 		<!-- Regla  -->
 		<category>
-			<pattern><set>año_valido</set></pattern>
+			<pattern>^ <set>año_valido</set> ^</pattern>
 			<that>DE ACUERDO, DIME EL AÑO DEL EVENTO</that>
 			<template>
 				Ahora dime el mes del evento
 				<think>
-					<set name="nuevoAnio"><star/></set>
+					<set name="nuevoAnio"><star index="2"/></set>
 				</think>
 			</template>
 		</category>
@@ -36,48 +44,48 @@
 
 		<!-- Regla  -->
 		<category>
-			<pattern><set>año_valido</set></pattern>
+			<pattern>^ <set>año_valido</set> ^</pattern>
 			<that>SOLO PUEDES DECIR UNO DEL 2017 AL 2027</that>
 			<template>
 				Ahora dime el mes del evento
 				<think>
-					<set name="nuevoAnio"><star/></set>
+					<set name="nuevoAnio"><star index="2"/></set>
 				</think>
 			</template>
 		</category>
 
 		<!-- Regla  -->
 		<category>
-			<pattern><set>mes_valido</set></pattern>
+			<pattern>^ <set>mes_valido</set> ^</pattern>
 			<that>AHORA DIME EL MES DEL EVENTO</that>
 			<template>
 				Dime ahora el dia
 				<think>
-					<set name="nuevoMes"><map name="mes_numero"><star/></map></set> 
+					<set name="nuevoMes"><map name="mes_numero"><star index="2"/></map></set> 
 				</think>
 			</template>
 		</category>
 
 		<!-- Regla  -->
 		<category>
-			<pattern><set>mes_valido_num</set></pattern>
+			<pattern>^ <set>mes_valido_num</set> ^</pattern>
 			<that>AHORA DIME EL MES DEL EVENTO</that>
 			<template>
 				Dime ahora el dia
 				<think>
-					<set name="nuevoMes"><star/></set> 
+					<set name="nuevoMes"><star index="2"/></set> 
 				</think>
 			</template>
 		</category>
 
 		<!-- Regla  -->
 		<category>
-			<pattern><set>mes_valido_num</set></pattern>
+			<pattern>^ <set>mes_valido_num</set> ^</pattern>
 			<that>ESE MES NO EXISTE, INTRODUCE UN MES VALIDO</that>
 			<template>
 				Dime ahora el dia
 				<think>
-					<set name="nuevoMes"><star/></set> 
+					<set name="nuevoMes"><star index="2"/></set> 
 				</think>
 			</template>
 		</category>
@@ -93,19 +101,25 @@
 
 		<!-- Regla  -->
 		<category>
-			<pattern><set>dias_validos</set></pattern>
+			<pattern>^ <set>dias_validos</set> ^</pattern>
 			<that>DIME AHORA EL DIA</that>
 			<template>
-				
-			</template>
-		</category>
+				Ya tenemos la fecha, vamos ahora con la hora, primero dime la hora y despues si es a y media o no
+				<think>
+					<set name="nuevoDia"><star index="2"/></set>
 
-		<!-- Regla  -->
-		<category>
-			<pattern><set>dias_validos</set></pattern>
-			<that>DIME AHORA EL DIA</that>
-			<template>
-				
+					<condition name="nuevoDia">
+						<li value="1"><set name="nuevoDia">01</set></li>
+						<li value="2"><set name="nuevoDia">02</set></li>
+						<li value="3"><set name="nuevoDia">03</set></li>
+						<li value="4"><set name="nuevoDia">04</set></li>
+						<li value="5"><set name="nuevoDia">05</set></li>
+						<li value="6"><set name="nuevoDia">06</set></li>
+						<li value="7"><set name="nuevoDia">07</set></li>
+						<li value="8"><set name="nuevoDia">08</set></li>
+						<li value="9"><set name="nuevoDia">09</set></li>
+					</condition>
+				</think>
 			</template>
 		</category>
 
@@ -117,7 +131,85 @@
 				Ese no es un dia valido
 			</template>
 		</category>
-	</topic>
 
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>hora_valida</set> ^</pattern>
+			<that>YA TENEMOS LA FECHA, VAMOS AHORA CON LA HORA, PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
+			<template>
+				Sera a y media?
+				<think>
+					<set name="nuevaHora"><star index="2"/></set>
+					<condition name="nuevaHora">
+						<li value="0"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="1"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="2"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="3"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="4"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="5"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="6"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="7"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="8"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="9"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>YA TENEMOS LA FECHA, VAMOS AHORA CON LA HORA. PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
+			<template>
+				Esa no es una hora valida
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>hora_valida</set> ^</pattern>
+			<that>ESA NO ES UNA HORA VALIDA</that>
+			<template>
+				Sera a y media?
+				<think>
+					<set name="nuevaHora"><star index="2"/></set> 
+					<condition name="nuevaHora">
+						<li value="0"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="1"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="2"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="3"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="4"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="5"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="6"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="7"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="8"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="9"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[Si Exacto Afirmativo Correcto] ^</pattern>
+			<that>SERA A Y MEDIA</that>
+			<template>
+				<think>
+					<set name="nuevaHora"><get name="nuevaHora"/>00</set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[No Negativo Nope] ^</pattern>
+			<that>SERA A Y MEDIA</that>
+			<template>
+				<think>
+					<set name="nuevaHora"><get name="nuevaHora"/>30</set>
+				</think>
+			</template>
+		</category>
+	</topic>
 
 	</aiml>
