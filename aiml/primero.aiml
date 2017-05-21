@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<aiml version="2.0">
+	
+	<!-- Regla 1 -->
+	<category>
+		<pattern>Hola ^</pattern>
+		<template>
+			<random>
+				<li>Hola :D</li>
+				<li>Que tal?</li>
+				<li>Buenos dias</li>
+				<li>Saludos humano</li>
+			</random>
+		</template>
+	</category>
+	
+	<!-- Regla 2 -->
+	<category>
+		<pattern>^ bien ^</pattern>
+		<that>QUE TAL</that>
+		<template>Me alegro</template>
+	</category>
+	
+	<!-- Regla 3 -->
+	<category>
+		<pattern>Como te llamas</pattern>
+		<template>
+			Mi nombre es <bot name="name"/>, como te llamas tu?
+		</template>
+	</category>
+	
+	<!-- Regla 4 -->
+	<category>
+		<pattern>Me llamo *</pattern>
+		<template>
+			Encantado, <star/>
+			<addtoset>
+				<name>usuario</name>
+				<key><star/></key>
+			</addtoset>	
+		</template>
+	</category>
+	
+	<!-- Regla 5 -->
+	<category>
+		<pattern>^ como me llamo ^</pattern>
+		<template>
+			Te llamas <readset>usuario</readset>
+		</template>
+	</category>
+
+	<!-- Regla 6 -->
+	<category>
+		<pattern>*</pattern>
+		<that>MI NOMBRE ES *</that>
+		<template>
+			Encantado
+			<addtoset>
+				<name>usuario</name>
+				<key><star/></key>
+			</addtoset>	
+		</template>
+	</category>
+	
+	<!-- Regla 7 -->
+	<category>
+		<pattern>Adios ^</pattern>
+		<template>
+			<random>
+				<li>Adios</li>
+				<li>Ya te vas?</li>
+				<li>Hasta pronto</li>
+				<li>Nos vemos</li>
+			</random>
+			<think>
+				<set name="topic">despedidaTriste</set>
+			</think>
+		</template>
+	</category>
+	
+	<topic name="despedidaTriste">
+		<!-- Regla 8 -->
+		<category>
+			<pattern>Si ^</pattern>
+			<that>YA TE VAS</that>
+			<template>
+				Te echare de menos
+			</template>
+		</category>
+
+		<!-- Regla 9 -->
+		<category>
+			<pattern>No ^</pattern>
+			<that>YA TE VAS</that>
+			<template>
+				Bien, podemos seguir divirtiendonos
+			</template>
+		</category>
+	</topic>
+
+	<!-- Regla 10 -->
+	<category>
+		<pattern>Es de noche</pattern>
+		<that>BUENOS DIAS</that>
+		<template>
+			Pues buenas noches
+		</template>
+	</category>
+
+	<!-- Regla 11 -->
+	<category>
+		<pattern>Chachi</pattern>
+		<template>
+			Pistachi :D
+		</template>
+	</category>
+
+	<!-- Regla 12 -->
+	<category>
+		<pattern>Esto es Esparta</pattern>
+		<template>
+			AU AU AU
+		</template>
+	</category>
+	
+	<!-- Regla 13 -->
+	<category>
+		<pattern>This is Esparta</pattern>
+		<template>
+			<srai>Esto es Esparta</srai>
+		</template>
+	</category>
+
+	<!-- Regla 14 -->
+	<category>
+		<pattern>Olvidalo</pattern>
+		<template>
+			Bueno, qué quieres hacer
+		</template>
+	</category>
+	</aiml>

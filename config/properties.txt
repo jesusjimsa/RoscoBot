@@ -1,0 +1,7 @@
+name:Rosco
+age:8
+email:jesusjimsa@icloud.com
+gender:male
+botmaster:Jesus	
+organization:ugr
+version:1

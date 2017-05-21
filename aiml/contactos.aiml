@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<aiml version="2.0">
+
+	<!-- Regla 1 -->
+	<category>
+		<pattern>^ [añad guard]+ ^ ^ [contacto persona]</pattern>
+		<template>
+			De acuerdo, dime su nombre
+			<think>
+				<set name="topic">nuevoContacto</set>
+			</think>
+		</template>
+	</category>
+
+	<topic name="nuevoContacto">
+		<!-- Regla 2 -->
+		<category>
+			<pattern>*</pattern>
+			<that>DE ACUERDO, DIME SU NOMBRE</that>
+			<template>
+				Ahora dime el apellido de <set name="nombre"><star/></set>
+			</template>
+		</category>
+
+		<!-- Regla 3 -->
+		<category>
+			<pattern>* ^</pattern>
+			<that>AHORA DIME EL APELLIDO DE *</that>
+			<template>
+				<think>
+					<set var="apellidoCompuesto"><star index="2"/></set>
+				</think>
+				<condition var="apellidoCompuesto">
+					<li value="unknown">
+						Ya he guardado a <star index="1"/> ahora toca el telefono
+						<think>
+							<set name="apellido"><star index="1"/></set>
+						</think>
+					</li>
+					<li>
+						Ya he guardado a <star index="1"/>_<star index="2"/> ahora toca el telefono
+						<think>
+							<set name="apellido"><star index="1"/>_<star index="2"/></set>
+						</think>
+					</li>
+				</condition>
+				<addtomap>
+					<name>nombres</name>
+					<key><get name="apellido"/></key>
+					<value><get name="nombre"/></value>
+				</addtomap>
+				<addtoset>
+					<name>apellidos</name>
+					<key><get name="apellido"/></key>
+				</addtoset>
+			</template>
+		</category>
+
+		<!-- Regla 4 -->
+		<category>
+			<pattern><set>apellidos</set></pattern>
+			<that>AHORA DIME EL APELLIDO DE *</that>
+			<template>
+				Ya tienes un contacto con ese apellido
+			</template>
+		</category>
+
+		<!-- Regla 5 -->
+		<category>
+			<pattern><set>number</set></pattern>
+			<that>YA HE GUARDADO A * AHORA TOCA EL TELEFONO</that>
+			<template>
+				<star/> añadido a <get name="apellido"/> dime ahora la direccion
+				<addtomap>
+					<name>telefonos</name>
+					<key><get name="apellido"/></key>
+					<value><star/></value>
+				</addtomap>
+			</template>
+		</category>
+
+		<!-- Regla 6 -->
+		<category>
+			<pattern>*</pattern>
+			<that>YA HE GUARDADO A * AHORA TOCA EL TELEFONO</that>
+			<template>
+				Por favor introduce un telefono valido
+			</template>
+		</category>
+
+		<!-- Regla 7 -->
+		<category>
+			<pattern><set>number</set></pattern>
+			<that>POR FAVOR INTRODUCE UN TELEFONO VALIDO</that>
+			<template>
+				<star/> añadido a <get name="apellido"/> dime ahora la direccion
+				<addtomap>
+					<name>telefonos</name>
+					<key><get name="apellido"/></key>
+					<value><star/></value>
+				</addtomap>
+			</template>
+		</category>
+
+		<!-- Regla 8 -->
+		<category>
+			<pattern>*</pattern>
+			<that>* AÑADIDO A * DIME AHORA LA DIRECCION</that>
+			<template>
+				<star/> añadido a <get name="apellido"/>
+				<addtomap>
+					<name>direcciones</name>
+					<key><get name="apellido"/></key>
+					<value><star/></value>
+				</addtomap>
+			</template>
+		</category>
+	</topic>
+
+	<!-- Regla 9 -->
+	<category>
+		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] ^ <set>apellidos</set></pattern>
+		<template>
+			Aquí los tienes:
+			Nombre: <map name="nombres"><star index="2"/></map>
+			Apellido: <star index="2"/>
+			Teléfono: <map name="telefonos"><star index="2"/></map>
+			Dirección: <map name="direcciones"><star index="2"/></map>
+		</template>
+	</category>
+
+	<!-- Regla 10 -->
+	<category>
+		<pattern>[Muestrame Dime Enseñame Cual Abre Donde Mostrar Dame] ^ [direccion calle domicilio vivienda hogar vive reside] ^ <set>apellidos</set></pattern>
+		<template>
+			<map name="nombres"><star index="3"/></map> <star index="3"/> vive en <map name="direcciones"><star index="3"/></map>
+		</template>
+	</category>
+
+	<!-- Regla 11 -->
+	<category>
+		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] ^ [telefono movil] ^ <set>apellidos</set></pattern>
+		<template>
+			El telefono de <map name="nombres"><star index="3"/></map> <star index="3"/> es el <map name="telefonos"><star index="3"/></map>
+		</template>
+	</category>
+
+	<!-- Regla 12 -->
+	<category>
+		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] ^ nombre ^ <set>apellidos</set></pattern>
+		<template>
+			El nombre completo es <map name="nombres"><star index="3"/></map> <star index="3"/>
+		</template>
+	</category>
+
+	<!-- Regla 13 -->
+	<category>
+		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] ^ todos [los mis] contactos</pattern>
+		<template>
+			<readset>apellidos</readset>
+		</template>
+	</category>
+
+	<!-- Regla 14 -->
+	<category>
+		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] *</pattern>
+		<template>
+			No lo tengo guardado
+		</template>
+	</category>
+
+	<!-- Regla 15 -->
+	<category>
+		<pattern>^ [cambia modifica actualiza]+ ^ ^ <set>apellidos</set></pattern>
+		<template>
+			De acuerdo, que quieres cambiar de <set name="apellido"><star index="4"/></set>?
+			<think>
+				<set name="topic">modificarContacto</set>
+			</think>
+		</template>
+	</category>
+
+	<topic name="modificarContacto">
+		<!-- Regla 16 -->
+		<category>
+			<pattern>^ nombre ^</pattern>
+			<that>DE ACUERDO, QUE QUIERES CAMBIAR DE *</that>
+			<template>
+				El nombre no puede ser modificado, no tendría sentido, no?
+			</template>
+		</category>
+
+		<!-- Regla 17 -->
+		<category>
+			<pattern>^ [telefono numero] ^</pattern>
+			<that>DE ACUERDO, QUE QUIERES CAMBIAR DE *</that>
+			<template>
+				Que telefono quieres usar para <get name="apellido"/> a partir de ahora?
+			</template>
+		</category>
+
+		<!-- Regla 18 -->
+		<category>
+			<pattern>^ [direccion calle] ^</pattern>
+			<that>DE ACUERDO, QUE QUIERES CAMBIAR DE *</that>
+			<template>
+				Que direccion quieres usar para <get name="apellido"/> a partir de ahora?
+			</template>
+		</category>
+
+		<!-- Regla 19 -->
+		<category>
+			<pattern>*</pattern>
+			<that>* nombre *</that>
+			<template>
+				Ya esta cambiado ;)
+				<modifymap>
+					<name>nombres</name>
+					<key><get name="apellido"/></key>
+					<value><star/></value>
+				</modifymap>
+			</template>
+		</category>
+
+		<!-- Regla 20 -->
+		<category>
+			<pattern>*</pattern>
+			<that>* telefono *</that>
+			<template>
+				Ya esta cambiado ;)
+				<modifymap>
+					<name>telefonos</name>
+					<key><get name="apellido"/></key>
+					<value><star/></value>
+				</modifymap>
+			</template>
+		</category>
+
+		<!-- Regla 21 -->
+		<category>
+			<pattern>*</pattern>
+			<that>* direccion *</that>
+			<template>
+				Ya esta cambiado ;)
+				<modifymap>
+					<name>direcciones</name>
+					<key><get name="apellido"/></key>
+					<value><star/></value>
+				</modifymap>
+			</template>
+		</category>
+	</topic>
+
+	<!-- Regla 22 -->
+	<category>
+		<pattern>^ [elimina quita borra mata]+ ^ ^ <set>apellidos</set> ^</pattern>
+		<template>
+			Estas seguro?
+			<think>
+				<set name="topic">BorrarContacto</set>
+				<set name="borrarApellido"><star index="4"/></set> 
+			</think>
+		</template>
+	</category>
+
+	<topic name="BorrarContacto">
+		<!-- Regla 23 -->
+		<category>
+			<pattern>^ Si ^</pattern>
+			<that>ESTAS SEGURO</that>
+			<template>
+				De acuerdo, ya está borrado
+				<removefrommap>	<!-- Borrar el nombre -->
+					<name>nombres</name>
+					<key><get name="borrarApellido"/></key>
+				</removefrommap>
+				<removefrommap>	<!-- Borrar el teléfono -->
+					<name>telefonos</name>
+					<key><get name="borrarApellido"/></key>
+				</removefrommap>
+				<removefrommap>	<!-- Borrar la dirección -->
+					<name>direcciones</name>
+					<key><get name="borrarApellido"/></key>
+				</removefrommap>
+				<removefromset>	<!-- Borrar del set -->
+					<name>apellidos</name>
+					<key><get name="borrarApellido"/></key>
+				</removefromset>
+			</template>
+		</category>
+
+		<!-- Regla 24 -->
+		<category>
+			<pattern>^ No ^</pattern>
+			<that>ESTAS SEGURO</that>
+			<template>
+				De acuerdo, no lo borraré
+			</template>
+		</category>
+	</topic>
+
+	<!-- Regla 25 -->
+	<category>
+		<pattern>^ [eliminar quitar borrar matar] ^ *</pattern>
+		<template>
+			No lo tenias guardado
+		</template>
+	</category>
+
+	<!-- Regla 26 -->
+	<category>
+		<pattern>Cuantos contactos ^</pattern>
+		<template>
+			<think>
+				<set var="num_cont"><srai>COUNT <readset>apellidos</readset></srai></set>
+			</think>
+			<condition var="num_cont">
+				<li value="0">No tienes contactos</li>
+				<li value="1">Tienes un contacto</li>
+				<li>Tienes <get var="num_cont"/> contactos</li>
+			</condition>
+		</template>
+	</category>
+
+	</aiml>
