@@ -3,7 +3,7 @@
 
 	<!-- Regla 1 -->
 	<category>
-		<pattern>^ [añad guard]+ ^ ^ [contacto persona]</pattern>
+		<pattern>^ [añad guard nuevo]+ ^ ^ [contacto persona]</pattern>
 		<template>
 			De acuerdo, dime su nombre
 			<think>
