@@ -155,4 +155,12 @@
 		</template>
 	</category>
 
+	<!-- Regla  -->
+	<category>
+		<pattern>cuantos meses tiene el año</pattern>
+		<template>
+			Tiene <srai>COUNT <readset>mes_valido</readset></srai> meses
+		</template>
+	</category>
+
 	</aiml>
