@@ -302,7 +302,27 @@
 						<key><get name="claveFechaHora"/></key>
 						<value><get name="nuevoInvitado"/></value>
 					</addtomap>
-					<!-- Añadir objetos al mapa de fecha:horas según si tiene o no ya objetos dentro una fecha determinada -->
+					<set var="condicion"><map name="fecha_horas"><get name="claveFecha"/></map></set>
+					<condition var="condicion">
+						<li value="unknown">
+							<addtomap>
+								<name>fecha_horas</name>
+								<key><get name="claveFecha"/></key>
+								<value><get name="nuevaHora"/></value>
+							</addtomap>
+						</li>
+						<li>
+							<modifymap>
+								<name>fecha_horas</name>
+								<key><get name="claveFecha"/></key>
+								<value><map name="fecha_horas"><get name="claveFecha">_<get name="nuevaHora"/></map></value>
+							</modifymap>
+						</li>
+					</condition>
+					<addtoset>
+						<name>fecha_hora</name>
+						<key><get name="claveFechaHora"/></key>
+					</addtoset>
 				</think>
 			</template>
 		</category>
@@ -322,13 +342,39 @@
 			<that>VALE, LO GUARDO ALGUIEN MAS</that>
 			<template>
 				Vale, ya esta registrado tu evento en el calendario
-				<!-- Registrar evento aquí, con todo el lío de mapas correspondiente -->
 				<think>
 					<addtomap>
 						<name>evento</name>
 						<key><get name="claveFechaHora"/></key>
-						<value></value>
+						<value><get name="nuevoTitulo"/></value>
 					</addtomap>
+					<addtomap>
+						<name>evper</name>
+						<key><get name="claveFechaHora"/></key>
+						<value><get name="nuevoInvitado"/></value>
+					</addtomap>
+					<set var="condicion"><map name="fecha_horas"><get name="claveFecha"/></map></set>
+					<condition var="condicion">
+						<li value="unknown">
+							<addtomap>
+								<name>fecha_horas</name>
+								<key><get name="claveFecha"/></key>
+								<value><get name="nuevaHora"/></value>
+							</addtomap>
+						</li>
+						<li>
+							<modifymap>
+								<name>fecha_horas</name>
+								<key><get name="claveFecha"/></key>
+								<value><map name="fecha_horas"><get name="claveFecha">_<get name="nuevaHora"/></map></value>
+							</modifymap>
+						</li>
+					</condition>
+					<addtoset>
+						<name>fecha_hora</name>
+						<key><get name="claveFechaHora"/></key>
+					</addtoset>
+				</think>>
 				</think>
 			</template>
 		</category>
