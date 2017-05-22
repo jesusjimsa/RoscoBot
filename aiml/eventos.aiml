@@ -4,13 +4,12 @@
 	<!-- Falta:
 			- Comprobar que no haya eventos repetidos (con el set)
 			- Modificar invitados, fecha, hora y título
-			- Borrar evento, preguntando
 			- Contar eventos de una fecha
 																	-->
 
 	<!-- Regla  -->
 	<category>
-		<pattern>^ [añad guard nuevo]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
+		<pattern>^ [añad guard nuevo crea]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
 		<template>
 			De acuerdo, dime el titulo del evento
 			<think>
@@ -72,7 +71,7 @@
 			<template>
 				Dime ahora el dia
 				<think>
-					<set name="nuevoMes"><map name="mes_numero"><star index="2"/></map></set> 
+					<set name="nuevoMes"><map name="mes_numero"><star index="2"/></map></set>
 				</think>
 			</template>
 		</category>
@@ -84,7 +83,7 @@
 			<template>
 				Dime ahora el dia
 				<think>
-					<set name="nuevoMes"><star index="2"/></set> 
+					<set name="nuevoMes"><star index="2"/></set>
 					<condition name="nuevoMes">
 						<li value="0"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
 						<li value="1"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
@@ -206,7 +205,7 @@
 			<template>
 				Sera a y media?
 				<think>
-					<set name="nuevaHora"><star index="2"/></set> 
+					<set name="nuevaHora"><star index="2"/></set>
 					<condition name="nuevaHora">
 						<li value="0"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
 						<li value="1"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
@@ -225,7 +224,7 @@
 
 		<!-- Regla  -->
 		<category>
-			<pattern>[Si Exacto Afirmativo Correcto] ^</pattern>
+			<pattern>[Si Exacto Afirmativo Correcto 30] ^</pattern>
 			<that>SERA A Y MEDIA</that>
 			<template>
 				<think>
@@ -233,7 +232,7 @@
 				</think>
 				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/>
 				<think>
-					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set> 
+					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set>
 				</think>
 				Va alguien contigo?
 				<think>
@@ -244,15 +243,16 @@
 
 		<!-- Regla  -->
 		<category>
-			<pattern>[No Negativo Nope] ^</pattern>
+			<pattern>[No Negativo Nope 00] ^</pattern>
 			<that>SERA A Y MEDIA</that>
 			<template>
 				<think>
 					<set name="nuevaHora"><get name="nuevaHora"/>00</set>
 				</think>
-				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/> Va alguien contigo?
+				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/>
+				Va alguien contigo?
 				<think>
-					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set> 
+					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set>
 					<set name="topic">invitados</set>
 				</think>
 			</template>
@@ -301,20 +301,20 @@
 						<key><get name="claveFechaHora"/></key>
 						<value><get name="nuevoInvitado"/></value>
 					</addtomap>
-					<set var="condicion"><map name="fecha_horas"><get name="claveFecha"/></map></set>
+					<set var="condicion"><map name="momentos"><get name="claveFecha"/></map></set>
 					<condition var="condicion">	<!-- Comprobar si ya tiene ese día algún evento -->
 						<li value="unknown">	<!-- Se guarda una sola hora -->
 							<addtomap>			<!-- Guardar eventos en un mapa con fecha:horas -->
-								<name>fecha_horas</name>
+								<name>momentos</name>
 								<key><get name="claveFecha"/></key>
 								<value><get name="nuevaHora"/></value>
 							</addtomap>
 						</li>
 						<li>					<!-- Ya había eventos, ahora solo se pegan -->
 							<modifymap>			<!-- Guardar eventos en un mapa con fecha:horas -->
-								<name>fecha_horas</name>
+								<name>momentos</name>
 								<key><get name="claveFecha"/></key>
-								<value><map name="fecha_horas"><get name="claveFecha"/>_<get name="nuevaHora"/></map></value>
+								<value><map name="momentos"><get name="claveFecha"/>_<get name="nuevaHora"/></map></value>
 							</modifymap>
 						</li>
 					</condition>
@@ -352,20 +352,20 @@
 						<key><get name="claveFechaHora"/></key>
 						<value><get name="nuevoInvitado"/></value>
 					</addtomap>
-					<set var="condicion"><map name="fecha_horas"><get name="claveFecha"/></map></set>
+					<set var="condicion"><map name="momentos"><get name="claveFecha"/></map></set>
 					<condition var="condicion">	<!-- Comprobar si ya tiene ese día algún evento -->
 						<li value="unknown">	<!-- Se guarda una sola hora -->
 							<addtomap>			<!-- Guardar eventos en un mapa con fecha:horas -->
-								<name>fecha_horas</name>
+								<name>momentos</name>
 								<key><get name="claveFecha"/></key>
 								<value><get name="nuevaHora"/></value>
 							</addtomap>
 						</li>
 						<li>					<!-- Ya había eventos, ahora solo se pegan -->
 							<modifymap>			<!-- Guardar eventos en un mapa con fecha:horas -->
-								<name>fecha_horas</name>
+								<name>momentos</name>
 								<key><get name="claveFecha"/></key>
-								<value><map name="fecha_horas"><get name="claveFecha"/>_<get name="nuevaHora"/></map></value>
+								<value><map name="momentos"><get name="claveFecha"/>_<get name="nuevaHora"/></map></value>
 							</modifymap>
 						</li>
 					</condition>
@@ -397,15 +397,295 @@
 	<category>
 		<pattern>^ [elimina quita borra]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
 		<template>
-			Estas seguro?
+			Vale, dime el año del evento que quieres borrar
 			<think>
 				<set name="topic">BorrarEvento</set>
 			</think>
 		</template>
 	</category>
-
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
 	<topic name="BorrarEvento">
-		<!-- Pedir año, mes, dia, hora, ¿y media? -->
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>año_valido</set> ^</pattern>
+			<that>VALE, DIME EL AÑO DEL EVENTO QUE QUIERES BORRAR</that>
+			<template>
+				Ahora dime el mes del evento
+				<think>
+					<set name="borrarAnio"><star index="2"/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>VALE, DIME EL AÑO DEL EVENTO QUE QUIERES BORRAR</that>
+			<template>
+				Solo puedes decir uno del 2017 al 2027
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>año_valido</set> ^</pattern>
+			<that>SOLO PUEDES DECIR UNO DEL 2017 AL 2027</that>
+			<template>
+				Ahora dime el mes del evento
+				<think>
+					<set name="borrarAnio"><star index="2"/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>mes_valido</set> ^</pattern>
+			<that>AHORA DIME EL MES DEL EVENTO</that>
+			<template>
+				Dime ahora el dia
+				<think>
+					<set name="borrarMes"><map name="mes_numero"><star index="2"/></map></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>mes_valido_num</set> ^</pattern>
+			<that>AHORA DIME EL MES DEL EVENTO</that>
+			<template>
+				Dime ahora el dia
+				<think>
+					<set name="borrarMes"><star index="2"/></set>
+					<condition name="borrarMes">
+						<li value="0"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="1"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="2"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="3"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="4"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="5"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="6"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="7"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="8"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="9"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>mes_valido_num</set> ^</pattern>
+			<that>ESE MES NO EXISTE, INTRODUCE UN MES VALIDO</that>
+			<template>
+				Dime ahora el dia
+				<think>
+					<set name="borrarMes"><star index="2"/></set>
+					 <condition name="borrarMes">
+						<li value="0"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="1"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="2"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="3"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="4"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="5"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="6"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="7"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="8"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+						<li value="9"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>AHORA DIME EL MES DEL EVENTO</that>
+			<template>
+				Ese mes no existe, introduce un mes valido
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>dias_validos</set> ^</pattern>
+			<that>DIME AHORA EL DIA</that>
+			<template>
+				Ya tenemos la fecha, vamos ahora con la hora, primero dime la hora y despues si es a y media o no
+				<think>
+					<set name="borrarDia"><star index="2"/></set>
+					<condition name="borrarDia">
+						<li value="1"><set name="borrarDia">01</set></li>
+						<li value="2"><set name="borrarDia">02</set></li>
+						<li value="3"><set name="borrarDia">03</set></li>
+						<li value="4"><set name="borrarDia">04</set></li>
+						<li value="5"><set name="borrarDia">05</set></li>
+						<li value="6"><set name="borrarDia">06</set></li>
+						<li value="7"><set name="borrarDia">07</set></li>
+						<li value="8"><set name="borrarDia">08</set></li>
+						<li value="9"><set name="borrarDia">09</set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>DIME AHORA EL DIA</that>
+			<template>
+				Ese no es un dia valido
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>hora_valida</set> ^</pattern>
+			<that>YA TENEMOS LA FECHA, VAMOS AHORA CON LA HORA, PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
+			<template>
+				Sera a y media?
+				<think>
+					<set name="borrarHora"><star index="2"/></set>
+					<condition name="borrarHora">
+						<li value="0"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="1"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="2"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="3"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="4"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="5"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="6"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="7"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="8"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="9"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>YA TENEMOS LA FECHA, VAMOS AHORA CON LA HORA. PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
+			<template>
+				Esa no es una hora valida
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>hora_valida</set> ^</pattern>
+			<that>ESA NO ES UNA HORA VALIDA</that>
+			<template>
+				Sera a y media?
+				<think>
+					<set name="borrarHora"><star index="2"/></set>
+					<condition name="borrarHora">
+						<li value="0"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="1"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="2"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="3"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="4"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="5"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="6"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="7"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="8"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="9"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[Si Exacto Afirmativo Correcto 30] ^</pattern>
+			<that>SERA A Y MEDIA</that>
+			<template>
+				<think>
+					<set name="borrarHora"><get name="borrarHora"/>30</set>
+				</think>
+				Se va a borrar el evento del <set name="claveBorrarFecha"><get name="borrarDia"/>/<get name="borrarMes"/>/<get name="borrarAnio"/></set>_<get name="borrarHora"/>
+				Estas seguro?
+				<think>
+					<set name="claveBorrarFechaHora"><get name="claveBorrarFecha"/>_<get name="borrarHora"/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[No Negativo Nope 00] ^</pattern>
+			<that>SERA A Y MEDIA</that>
+			<template>
+				<think>
+					<set name="borrarHora"><get name="borrarHora"/>00</set>
+				</think>
+				Se va a borrar el evento del <set name="claveBorrarFecha"><get name="borrarDia"/>/<get name="borrarMes"/>/<get name="borrarAnio"/></set>_<get name="borrarHora"/>
+				Estas seguro?
+				<think>
+					<set name="claveBorrarFechaHora"><get name="claveBorrarFecha"/>_<get name="borrarHora"/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[Si Exacto Afirmativo Correcto] ^</pattern>
+			<that>SE VA A BORRAR EL EVENTO DEL * ESTAS SEGURO</that>
+			<template>
+				<think>
+					<removefrommap>
+						<name>evento</name>
+						<key><get name="claveBorrarFechaHora"/></key>
+					</removefrommap>
+					<removefrommap>
+						<name>evper</name>
+						<key><get name="claveBorrarFechaHora"/></key>
+					</removefrommap>
+					<removefrommap>
+						<name>momentos</name>
+						<key><get name="claveBorrarFecha"/></key>
+					</removefrommap>
+					<removefromset>
+						<name>fecha_hora</name>
+						<key><get name="claveBorrarFechaHora"/></key>
+					</removefromset>
+				</think>
+				Ya he borrado el evento del <get name="claveBorrarFechaHora"/>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[No Negativo Nope] ^</pattern>
+			<that>SE VA A BORRAR EL EVENTO DEL * ESTAS SEGURO</that>
+			<template>
+				Entonces no borro nada
+			</template>
+		</category>
 	</topic>
-	
+
 	</aiml>
