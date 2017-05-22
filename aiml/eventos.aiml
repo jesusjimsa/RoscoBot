@@ -218,7 +218,7 @@
 			<that>SERA A Y MEDIA</that>
 			<template>
 				<think>
-					<set name="nuevaHora"><get name="nuevaHora"/>00</set>
+					<set name="nuevaHora"><get name="nuevaHora"/>30</set>
 				</think>
 				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/>
 				<think>
@@ -237,22 +237,68 @@
 			<that>SERA A Y MEDIA</that>
 			<template>
 				<think>
-					<set name="nuevaHora"><get name="nuevaHora"/>30</set>
+					<set name="nuevaHora"><get name="nuevaHora"/>00</set>
 				</think>
-				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/>
+				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/> Va alguien contigo?
 				<think>
 					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set> 
-				</think>
-				Va alguien contigo?
-				<think>
 					<set name="topic">invitados</set>
 				</think>
 			</template>
 		</category>
-
-		<topic name="invitados">
-			
-		</topic>
 	</topic>
 
+	<topic name="invitados">
+		<!-- Regla  -->
+		<category>
+			<pattern>[Si Exacto Afirmativo Correcto] ^</pattern>
+			<that>LA FECHA COMPLETA ES *</that>
+			<template>
+				Como se llama?
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>COMO SE LLAMA</that>
+			<template>
+				Vale, lo guardo Alguien mas?
+				<think>
+					<set name="nuevoInvitado1"><star/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[No Negativo Nope] ^</pattern>
+			<that>LA FECHA COMPLETA ES *</that>
+			<template>
+				Vale, ya esta registrado tu evento en el calendario
+				<!-- Registrar evento aquí, con todo el lío de mapas correspondiente -->
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[Si Exacto Afirmativo Correcto] ^</pattern>
+			<that>VALE, LO GUARDO ALGUIEN MAS</that>
+			<template>
+				Como se llama?
+				<!-- Registrar evento aquí, con todo el lío de mapas correspondiente -->
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[No Negativo Nope] ^</pattern>
+			<that>VALE, LO GUARDO ALGUIEN MAS</that>
+			<template>
+				Vale, ya esta registrado tu evento en el calendario
+				<!-- Registrar evento aquí, con todo el lío de mapas correspondiente -->
+			</template>
+		</category>
+	</topic>
+	
 	</aiml>
