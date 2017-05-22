@@ -292,34 +292,34 @@
 			<template>
 				Vale, ya esta registrado tu evento en el calendario
 				<think>
-					<addtomap>
+					<addtomap>	<!-- Guardar eventos en un mapa con fecha_hora:titulo -->
 						<name>evento</name>
 						<key><get name="claveFechaHora"/></key>
 						<value><get name="nuevoTitulo"/></value>
 					</addtomap>
 					<addtomap>
-						<name>evper</name>
+						<name>evper</name>	<!-- Guardar eventos en un mapa con fecha_hora:invitados -->
 						<key><get name="claveFechaHora"/></key>
 						<value><get name="nuevoInvitado"/></value>
 					</addtomap>
 					<set var="condicion"><map name="fecha_horas"><get name="claveFecha"/></map></set>
-					<condition var="condicion">
-						<li value="unknown">
-							<addtomap>
+					<condition var="condicion">	<!-- Comprobar si ya tiene ese día algún evento -->
+						<li value="unknown">	<!-- Se guarda una sola hora -->
+							<addtomap>			<!-- Guardar eventos en un mapa con fecha:horas -->
 								<name>fecha_horas</name>
 								<key><get name="claveFecha"/></key>
 								<value><get name="nuevaHora"/></value>
 							</addtomap>
 						</li>
-						<li>
-							<modifymap>
+						<li>					<!-- Ya había eventos, ahora solo se pegan -->
+							<modifymap>			<!-- Guardar eventos en un mapa con fecha:horas -->
 								<name>fecha_horas</name>
 								<key><get name="claveFecha"/></key>
 								<value><map name="fecha_horas"><get name="claveFecha">_<get name="nuevaHora"/></map></value>
 							</modifymap>
 						</li>
 					</condition>
-					<addtoset>
+					<addtoset>	<!-- Guardar eventos en un set para comprobar si ya está pillado el momento -->
 						<name>fecha_hora</name>
 						<key><get name="claveFechaHora"/></key>
 					</addtoset>
@@ -343,38 +343,37 @@
 			<template>
 				Vale, ya esta registrado tu evento en el calendario
 				<think>
-					<addtomap>
+					<addtomap>	<!-- Guardar eventos en un mapa con fecha_hora:titulo -->
 						<name>evento</name>
 						<key><get name="claveFechaHora"/></key>
 						<value><get name="nuevoTitulo"/></value>
 					</addtomap>
 					<addtomap>
-						<name>evper</name>
+						<name>evper</name>	<!-- Guardar eventos en un mapa con fecha_hora:invitados -->
 						<key><get name="claveFechaHora"/></key>
 						<value><get name="nuevoInvitado"/></value>
 					</addtomap>
 					<set var="condicion"><map name="fecha_horas"><get name="claveFecha"/></map></set>
-					<condition var="condicion">
-						<li value="unknown">
-							<addtomap>
+					<condition var="condicion">	<!-- Comprobar si ya tiene ese día algún evento -->
+						<li value="unknown">	<!-- Se guarda una sola hora -->
+							<addtomap>			<!-- Guardar eventos en un mapa con fecha:horas -->
 								<name>fecha_horas</name>
 								<key><get name="claveFecha"/></key>
 								<value><get name="nuevaHora"/></value>
 							</addtomap>
 						</li>
-						<li>
-							<modifymap>
+						<li>					<!-- Ya había eventos, ahora solo se pegan -->
+							<modifymap>			<!-- Guardar eventos en un mapa con fecha:horas -->
 								<name>fecha_horas</name>
 								<key><get name="claveFecha"/></key>
 								<value><map name="fecha_horas"><get name="claveFecha">_<get name="nuevaHora"/></map></value>
 							</modifymap>
 						</li>
 					</condition>
-					<addtoset>
+					<addtoset>	<!-- Guardar eventos en un set para comprobar si ya está pillado el momento -->
 						<name>fecha_hora</name>
 						<key><get name="claveFechaHora"/></key>
 					</addtoset>
-				</think>>
 				</think>
 			</template>
 		</category>
