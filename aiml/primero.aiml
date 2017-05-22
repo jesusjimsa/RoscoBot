@@ -155,11 +155,35 @@
 		</template>
 	</category>
 
-	<!-- Regla  -->
+	<!-- Regla 17 -->
 	<category>
 		<pattern>cuantos meses tiene el año</pattern>
 		<template>
 			Tiene <srai>COUNT <readset>mes_valido</readset></srai> meses
+		</template>
+	</category>
+
+	<!-- Regla 18 -->
+	<category>
+		<pattern>Que te parece [Siri Assistant Cortana]</pattern>
+		<template>
+			No esta mal, tambien sabe gestionar los contactos y eventos como yo
+		</template>
+	</category>
+
+	<!-- Regla 19 -->
+	<category>
+		<pattern>OK Google</pattern>
+		<template>
+			Muy gracioso...
+		</template>
+	</category>
+
+	<!-- Regla 20 -->
+	<category>
+		<pattern>Hey Siri</pattern>
+		<template>
+			<srai>OK Google</srai>
 		</template>
 	</category>
 
