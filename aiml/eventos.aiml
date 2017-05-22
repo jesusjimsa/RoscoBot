@@ -13,7 +13,7 @@
 	<category>
 		<pattern>^ [añad guard nuevo]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
 		<template>
-			De acuerdo, dime el año del evento
+			De acuerdo, dime el titulo del evento
 			<think>
 				<set name="topic">nuevoEvento</set>
 			</think>
@@ -23,8 +23,20 @@
 	<topic name="nuevoEvento">
 		<!-- Regla  -->
 		<category>
+			<pattern>*</pattern>
+			<that>DE ACUERDO, DIME EL TITULO DEL EVENTO</that>
+			<template>
+				<think>
+					<set name="nuevoTitulo"><srai>ponerbarrabaja <star/></srai></set>
+				</think>
+				Guardado, dime ahora el año de <get name="nuevoTitulo"/>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
 			<pattern>^ <set>año_valido</set> ^</pattern>
-			<that>DE ACUERDO, DIME EL AÑO DEL EVENTO</that>
+			<that>GUARDADO, DIME AHORA EL AÑO DE *</that>
 			<template>
 				Ahora dime el mes del evento
 				<think>
@@ -265,7 +277,10 @@
 			<template>
 				Vale, lo guardo Alguien mas?
 				<think>
-					<set name="nuevoInvitado1"><star/></set>
+					<condition name="nuevoInvitado">
+						<li value="unknown"><set name="nuevoInvitado"><star/></set></li>
+						<li><set name="nuevoInvitado"><get name="nuevoInvitado"/>/<star/></set> </li>
+					</condition>
 				</think>
 			</template>
 		</category>
@@ -276,7 +291,19 @@
 			<that>LA FECHA COMPLETA ES *</that>
 			<template>
 				Vale, ya esta registrado tu evento en el calendario
-				<!-- Registrar evento aquí, con todo el lío de mapas correspondiente -->
+				<think>
+					<addtomap>
+						<name>evento</name>
+						<key><get name="claveFechaHora"/></key>
+						<value><get name="nuevoTitulo"/></value>
+					</addtomap>
+					<addtomap>
+						<name>evper</name>
+						<key><get name="claveFechaHora"/></key>
+						<value><get name="nuevoInvitado"/></value>
+					</addtomap>
+					<!-- Añadir objetos al mapa de fecha:horas según si tiene o no ya objetos dentro una fecha determinada -->
+				</think>
 			</template>
 		</category>
 
@@ -286,7 +313,6 @@
 			<that>VALE, LO GUARDO ALGUIEN MAS</that>
 			<template>
 				Como se llama?
-				<!-- Registrar evento aquí, con todo el lío de mapas correspondiente -->
 			</template>
 		</category>
 
@@ -297,6 +323,13 @@
 			<template>
 				Vale, ya esta registrado tu evento en el calendario
 				<!-- Registrar evento aquí, con todo el lío de mapas correspondiente -->
+				<think>
+					<addtomap>
+						<name>evento</name>
+						<key><get name="claveFechaHora"/></key>
+						<value></value>
+					</addtomap>
+				</think>
 			</template>
 		</category>
 	</topic>
