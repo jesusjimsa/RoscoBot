@@ -1,2 +1,2 @@
 # RoscoBot
-Prácticas realizadas en la asignatura de Inteligencia Artificial sobre un agente conversaciones de la ETSIIT en la UGR
+_Configurar el editor de código en modo XML para que sea más fácil moverse por los archivos._
