@@ -2,12 +2,11 @@
 	<aiml version="2.0">
 
 	<!-- Falta:
-			- Agregar evento
-			- Cantidad de eventos
+			- Comprobar que no haya eventos repetidos (con el set)
 			- Modificar invitados, fecha, hora y título
 			- Borrar evento, preguntando
 			- Contar eventos de una fecha
-														-->
+																	-->
 
 	<!-- Regla  -->
 	<category>
@@ -315,7 +314,7 @@
 							<modifymap>			<!-- Guardar eventos en un mapa con fecha:horas -->
 								<name>fecha_horas</name>
 								<key><get name="claveFecha"/></key>
-								<value><map name="fecha_horas"><get name="claveFecha">_<get name="nuevaHora"/></map></value>
+								<value><map name="fecha_horas"><get name="claveFecha"/>_<get name="nuevaHora"/></map></value>
 							</modifymap>
 						</li>
 					</condition>
@@ -366,7 +365,7 @@
 							<modifymap>			<!-- Guardar eventos en un mapa con fecha:horas -->
 								<name>fecha_horas</name>
 								<key><get name="claveFecha"/></key>
-								<value><map name="fecha_horas"><get name="claveFecha">_<get name="nuevaHora"/></map></value>
+								<value><map name="fecha_horas"><get name="claveFecha"/>_<get name="nuevaHora"/></map></value>
 							</modifymap>
 						</li>
 					</condition>
@@ -377,6 +376,36 @@
 				</think>
 			</template>
 		</category>
+	</topic>
+
+	<!-- Regla  -->
+	<category>
+		<pattern>[Cuantos Cuantas] [cita evento reunion aviso recordatorio acontecimiento]+ ^ ^</pattern>
+		<template>
+			<think>
+				<set var="num_cont"><srai>COUNT <readset>fecha_hora</readset></srai></set>
+			</think>
+			<condition var="num_cont">
+				<li value="0">No tienes eventos</li>
+				<li value="1">Tienes un evento</li>
+				<li>Tienes <get var="num_cont"/> eventos</li>
+			</condition>
+		</template>
+	</category>
+
+	<!-- Regla  -->
+	<category>
+		<pattern>^ [elimina quita borra]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
+		<template>
+			Estas seguro?
+			<think>
+				<set name="topic">BorrarEvento</set>
+			</think>
+		</template>
+	</category>
+
+	<topic name="BorrarEvento">
+		<!-- Pedir año, mes, dia, hora, ¿y media? -->
 	</topic>
 	
 	</aiml>
