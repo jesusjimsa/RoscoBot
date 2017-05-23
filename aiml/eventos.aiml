@@ -233,11 +233,18 @@
 				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/>
 				<think>
 					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set>
+					<!--<set var="presente"><srai>finditem <get name="claveFechaHora"/> in <readset>fecha_hora</readset></srai></set>
+					<condition var="presente">
+						<li value="0">-->
+							<set var="respuesta">Va alguien contigo?</set>
+							<set name="topic">invitados</set>
+						<!--</li>
+						<li>
+							<set var="respuesta">Acabo de darme cuenta de que ya tienes un evento para esa hora. Puedes modificarlo o borrarlo si asi lo deseas.</set>
+						</li>
+					</condition>-->
 				</think>
-				Va alguien contigo?
-				<think>
-					<set name="topic">invitados</set>
-				</think>
+				<get var="respuesta"/>
 			</template>
 		</category>
 
@@ -250,11 +257,21 @@
 					<set name="nuevaHora"><get name="nuevaHora"/>00</set>
 				</think>
 				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/>
-				Va alguien contigo?
 				<think>
 					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set>
-					<set name="topic">invitados</set>
+					
+					<!--<set var="presente"><srai>finditem <get name="claveFechaHora"/> in <readset>fecha_hora</readset></srai></set>
+					<condition var="presente">
+						<li value="1">-->
+							<set var="respuesta">Va alguien contigo?</set>
+							<set name="topic">invitados</set>
+						<!--</li>
+						<li>
+							<set var="respuesta">Acabo de darme cuenta de que ya tienes un evento para esa hora. Puedes modificarlo o borrarlo si asi lo deseas.</set>
+						</li>
+					</condition>-->
 				</think>
+				<get var="respuesta"/>
 			</template>
 		</category>
 	</topic>
@@ -403,30 +420,7 @@
 			</think>
 		</template>
 	</category>
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
+	
 	<topic name="BorrarEvento">
 		<!-- Regla  -->
 		<category>
@@ -684,6 +678,260 @@
 			<that>SE VA A BORRAR EL EVENTO DEL * ESTAS SEGURO</that>
 			<template>
 				Entonces no borro nada
+			</template>
+		</category>
+	</topic>
+
+	<!-- Regla 15 -->
+	<category>
+		<pattern>^ [cambia modifica actualiza]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
+		<template>
+			De acuerdo, dime el año del evento que quieres modificar
+			<think>
+				<set name="topic">modificarEvento</set>
+			</think>
+		</template>
+	</category>
+
+	<topic name="modificarEvento">
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>año_valido</set> ^</pattern>
+			<that>VALE, DIME EL AÑO DEL EVENTO QUE QUIERES MODIFICAR</that>
+			<template>
+				Ahora dime el mes del evento
+				<think>
+					<set name="modificarAnio"><star index="2"/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>VALE, DIME EL AÑO DEL EVENTO QUE QUIERES MODIFICAR</that>
+			<template>
+				Solo puedes decir uno del 2017 al 2027
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>año_valido</set> ^</pattern>
+			<that>SOLO PUEDES DECIR UNO DEL 2017 AL 2027</that>
+			<template>
+				Ahora dime el mes del evento
+				<think>
+					<set name="modificarAnio"><star index="2"/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>mes_valido</set> ^</pattern>
+			<that>AHORA DIME EL MES DEL EVENTO</that>
+			<template>
+				Dime ahora el dia
+				<think>
+					<set name="modificarMes"><map name="mes_numero"><star index="2"/></map></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>mes_valido_num</set> ^</pattern>
+			<that>AHORA DIME EL MES DEL EVENTO</that>
+			<template>
+				Dime ahora el dia
+				<think>
+					<set name="modificarMes"><star index="2"/></set>
+					<condition name="modificarMes">
+						<li value="0"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="1"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="2"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="3"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="4"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="5"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="6"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="7"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="8"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="9"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>mes_valido_num</set> ^</pattern>
+			<that>ESE MES NO EXISTE, INTRODUCE UN MES VALIDO</that>
+			<template>
+				Dime ahora el dia
+				<think>
+					<set name="modificarMes"><star index="2"/></set>
+					 <condition name="modificarMes">
+						<li value="0"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="1"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="2"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="3"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="4"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="5"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="6"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="7"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="8"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+						<li value="9"><set name="modificarMes">0<get name="modificarMes"></get></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>AHORA DIME EL MES DEL EVENTO</that>
+			<template>
+				Ese mes no existe, introduce un mes valido
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>dias_validos</set> ^</pattern>
+			<that>DIME AHORA EL DIA</that>
+			<template>
+				Ya tenemos la fecha, vamos ahora con la hora, primero dime la hora y despues si es a y media o no
+				<think>
+					<set name="modificarDia"><star index="2"/></set>
+					<condition name="modificarDia">
+						<li value="1"><set name="modificarDia">01</set></li>
+						<li value="2"><set name="modificarDia">02</set></li>
+						<li value="3"><set name="modificarDia">03</set></li>
+						<li value="4"><set name="modificarDia">04</set></li>
+						<li value="5"><set name="modificarDia">05</set></li>
+						<li value="6"><set name="modificarDia">06</set></li>
+						<li value="7"><set name="modificarDia">07</set></li>
+						<li value="8"><set name="modificarDia">08</set></li>
+						<li value="9"><set name="modificarDia">09</set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>DIME AHORA EL DIA</that>
+			<template>
+				Ese no es un dia valido
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>hora_valida</set> ^</pattern>
+			<that>YA TENEMOS LA FECHA, VAMOS AHORA CON LA HORA, PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
+			<template>
+				Sera a y media?
+				<think>
+					<set name="modificarHora"><star index="2"/></set>
+					<condition name="modificarHora">
+						<li value="0"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="1"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="2"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="3"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="4"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="5"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="6"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="7"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="8"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="9"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>YA TENEMOS LA FECHA, VAMOS AHORA CON LA HORA. PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
+			<template>
+				Esa no es una hora valida
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>^ <set>hora_valida</set> ^</pattern>
+			<that>ESA NO ES UNA HORA VALIDA</that>
+			<template>
+				Sera a y media?
+				<think>
+					<set name="modificarHora"><star index="2"/></set>
+					<condition name="modificarHora">
+						<li value="0"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="1"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="2"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="3"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="4"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="5"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="6"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="7"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="8"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="9"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[Si Exacto Afirmativo Correcto 30] ^</pattern>
+			<that>SERA A Y MEDIA</that>
+			<template>
+				<think>
+					<set name="modificarHora"><get name="modificarHora"/>30</set>
+				</think>
+				Se va a modificar el evento del <set name="claveModificarFecha"><get name="modificarDia"/>/<get name="modificarMes"/>/<get name="modificarAnio"/></set>_<get name="modificarHora"/>
+				Que quieres cambiar? (contactos/fecha/hora/titulo)
+				<think>
+					<set name="claveModificarFechaHora"><get name="claveModificarFecha"/>_<get name="modificarHora"/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[No Negativo Nope 00] ^</pattern>
+			<that>SERA A Y MEDIA</that>
+			<template>
+				<think>
+					<set name="modificarHora"><get name="modificarHora"/>00</set>
+				</think>
+				Se va a modificar el evento del <set name="claveModificarFecha"><get name="modificarDia"/>/<get name="modificarMes"/>/<get name="modificarAnio"/></set>_<get name="modificarHora"/>
+				Que quieres cambiar? (contactos/fecha/hora/titulo)
+				<think>
+					<set name="claveModificarFechaHora"><get name="claveModificarFecha"/>_<get name="modificarHora"/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[Contactos Fecha Hora Titulo] ^</pattern>
+			<that>SE VA A MODIFICAR EL EVENTO DEL * QUE QUIERES CAMBIAR</that>
+			<template>
+				<!-- Guardar qué quiere modificar y en función de eso ir a un topic o a otro -->
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>Nada ^</pattern>
+			<that>SE VA A MODIFICAR EL EVENTO DEL * QUE QUIERES CAMBIAR</that>
+			<template>
+				Entonces no modifico nada nada
 			</template>
 		</category>
 	</topic>
