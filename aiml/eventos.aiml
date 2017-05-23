@@ -288,7 +288,7 @@
 
 		<!-- Regla  -->
 		<category>
-			<pattern>*</pattern>
+			<pattern><set>apellidos</set></pattern>
 			<that>COMO SE LLAMA</that>
 			<template>
 				Vale, lo guardo Alguien mas?
@@ -346,7 +346,7 @@
 		<!-- Regla  -->
 		<category>
 			<pattern>[Si Exacto Afirmativo Correcto] ^</pattern>
-			<that>VALE, LO GUARDO ALGUIEN MAS</that>
+			<that>* ALGUIEN MAS</that>
 			<template>
 				Como se llama?
 			</template>
@@ -355,7 +355,7 @@
 		<!-- Regla  -->
 		<category>
 			<pattern>[No Negativo Nope] ^</pattern>
-			<that>VALE, LO GUARDO ALGUIEN MAS</that>
+			<that>* ALGUIEN MAS</that>
 			<template>
 				Vale, ya esta registrado tu evento en el calendario
 				<think>
@@ -391,6 +391,30 @@
 						<key><get name="claveFechaHora"/></key>
 					</addtoset>
 				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern><set>apellidos</set></pattern>
+			<that>* ALGUIEN MAS</that>
+			<template>
+				Vale, lo guardo Alguien mas?
+				<think>
+					<condition name="nuevoInvitado">
+						<li value="unknown"><set name="nuevoInvitado"><star/></set></li>
+						<li><set name="nuevoInvitado"><get name="nuevoInvitado"/>/<star/></set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>* ALGUIEN MAS</that>
+			<template>
+				No tienes guardado a ese contacto Alguien mas?
 			</template>
 		</category>
 	</topic>
@@ -697,7 +721,7 @@
 		<!-- Regla  -->
 		<category>
 			<pattern>^ <set>año_valido</set> ^</pattern>
-			<that>VALE, DIME EL AÑO DEL EVENTO QUE QUIERES MODIFICAR</that>
+			<that>DE ACUERDO, DIME EL AÑO DEL EVENTO QUE QUIERES MODIFICAR</that>
 			<template>
 				Ahora dime el mes del evento
 				<think>
@@ -709,7 +733,7 @@
 		<!-- Regla  -->
 		<category>
 			<pattern>*</pattern>
-			<that>VALE, DIME EL AÑO DEL EVENTO QUE QUIERES MODIFICAR</that>
+			<that>DE ACUERDO, DIME EL AÑO DEL EVENTO QUE QUIERES MODIFICAR</that>
 			<template>
 				Solo puedes decir uno del 2017 al 2027
 			</template>
@@ -919,19 +943,89 @@
 
 		<!-- Regla  -->
 		<category>
-			<pattern>[Contactos Fecha Hora Titulo] ^</pattern>
-			<that>SE VA A MODIFICAR EL EVENTO DEL * QUE QUIERES CAMBIAR</that>
+			<pattern>^ [Contactos Fecha Hora Titulo]</pattern>
+			<that>SE VA A MODIFICAR EL EVENTO DEL *</that>
 			<template>
-				<!-- Guardar qué quiere modificar y en función de eso ir a un topic o a otro -->
+				<think>
+					<set var="cambiar"><star index="2"/></set>
+					<condition var="cambiar">
+						<li value="contactos">
+							<set name="topic">cambiarPersonas</set>
+							<set var="respuesta">Quieres añadir o quitar un contacto?</set> 
+						</li>
+						<li value="fecha">
+							<set name="topic">cambiarDia</set>
+							<set var="respuesta">Cual es el nuevo año?</set> 
+						</li>
+						<li value="hora">
+							<set name="topic">cambiarHora</set>
+							<set var="respuesta">Cual es la nueva hora?</set> 
+						</li>
+						<li value="titulo">
+							<set name="topic">cambiarTitulo</set>
+							<set var="respuesta">Cual es el nuevo titulo?</set> 
+						</li>
+					</condition>
+				</think>
+
+
 			</template>
 		</category>
 
 		<!-- Regla  -->
 		<category>
 			<pattern>Nada ^</pattern>
-			<that>SE VA A MODIFICAR EL EVENTO DEL * QUE QUIERES CAMBIAR</that>
+			<that>SE VA A MODIFICAR EL EVENTO DEL *</that>
 			<template>
 				Entonces no modifico nada nada
+			</template>
+		</category>
+	</topic>
+
+	<topic name="cambiarPersonas">
+		<!-- Regla  -->
+		<category>
+			<pattern>Añadir</pattern>
+			<that>QUIERES AÑADIR O QUITAR UN CONTACTO</that>
+			<template>
+				Cual es el apellido de la persona a añadir?
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>Quitar</pattern>
+			<that>QUIERES AÑADIR O QUITAR UN CONTACTO</that>
+			<template>
+				Cual es el apellido de la persona a quitar del evento?
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern><set>apellidos</set></pattern>
+			<that>CUAL ES EL APELLIDO DE LA PERSONA A AÑADIR</that>
+			<template>
+				Ya esta añadido al evento
+				<think>
+					<set var="invitados"><map name="evper">claveModificarFechaHora</map></set>
+					<condition>
+						<li value="unknown">
+							<modifymap>
+								<name>evper</name>
+								<key><get name="claveModificarFechaHora"/></key>
+								<value><star/></value>
+							</modifymap>
+						</li>
+						<li>
+							<modifymap>
+								<name>evper</name>
+								<key><get name="claveModificarFechaHora"/></key>
+								<value><map name="evper">claveModificarFechaHora</map>/<star/></value>
+							</modifymap>
+						</li>
+					</condition>
+				</think>
 			</template>
 		</category>
 	</topic>
