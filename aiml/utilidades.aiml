@@ -168,7 +168,7 @@
 			</condition>
 		</template>
 	</category>
-	
+
 	<!-- Regla que elimina la palabra de posicion number(<star/>) en <star index="2"> -->
 	<category>
 		<pattern>
@@ -218,7 +218,7 @@
 			</condition>
 		</template>
 	</category>
-	
+
 	<!-- Regla que aniade una palabra al principio de una frase si la palabra no estaba ya en la frase -->
 	<category>
 		<pattern>
@@ -249,7 +249,7 @@
 			<get var="set"/>
 		</template>
 	</category>
-	
+
 	<!-- Regla que genera un numero aleatorio en el rango de 1 a number -->
 	<category>
 		<pattern>
@@ -390,7 +390,7 @@
 			</condition>
 		</template>
 	</category>
-	
+
 	<!-- Regla que cambia la palabra de posicion number(<star/>) por <star index="2"> -->
 	<category>
 	    <pattern>
@@ -424,7 +424,7 @@
 	        </condition>
 	    </template>
 	</category>
-	
+
 	<!-- Regla que inserta un nuevo elemento en la posicion indicada -->
 	<category>
 	    <pattern>
@@ -458,7 +458,7 @@
 	        </condition>
 	    </template>
 	</category>
-	
+
 	<!-- Regla que suma un dia al indicado -->
 	<category>
 		<pattern>TOMORROW * * *</pattern>
@@ -467,7 +467,7 @@
 				<set var="dia"><star/></set>
 				<set var="mes"><star index = "2"/></set>
 				<set var="anno"><star index = "3"/></set>
-				<set var="dia"><map name="successor"><get var="dia"/></map></set>				
+				<set var="dia"><map name="successor"><get var="dia"/></map></set>
 			</think>
 			<condition var="dia">
 				<li value = "29">
@@ -514,7 +514,7 @@
 			<get var="dia"/>/<get var="mes"/>/<get var="anno"/>
 		</template>
 	</category>
-	
+
 	<!-- Regla que separa una palabra letra a letra -->
 	<category>
 	<pattern> deletrea * </pattern>
@@ -530,7 +530,7 @@
 	<!-- Regla que elimina los espacios de una lista de palabras -->
 	<category>
 	<pattern> quitarespacios * </pattern>
-	<template> 
+	<template>
 	  <think>
 		<set var="palabra"></set>
 		<set var="solucion"></set>
@@ -542,7 +542,7 @@
 			<li value="NIL">
 				<set var="solucion"><get var="solucion"/> <get var="palabra"/></set>
 			</li>
-			<li value="_"> 
+			<li value="_">
 				<set var="solucion"><get var="solucion"/> <get var="palabra"/></set>
 				<set var="palabra"></set>
 				<set var="caracter"><first><get var="tmp"/></first></set>
@@ -564,7 +564,7 @@
 	<!-- Regla que concatena una lista de palabras mediante un "_" -->
 	<category>
 	<pattern> ponerbarrabaja * </pattern>
-	<template> 
+	<template>
 	  <think>
 		<set var="tmp"><star/></set>
 		<set var="solucion"><first><get var="tmp"/></first></set>
@@ -574,6 +574,28 @@
 			</li>
 			<li>
 				<set var="solucion"><get var="solucion"/>_<first><get var="tmp"/></first></set>
+				<set var="tmp"><rest><get var="tmp"/></rest></set>
+				<loop/>
+			</li>
+		</condition>
+	  </think>
+	<get var="solucion"/>
+	</template>
+	</category>
+
+	<!-- Regla que concatena una lista de palabras mediante un "/" -->
+	<category>
+	<pattern> ponerdiagonal * </pattern>
+	<template>
+	  <think>
+		<set var="tmp"><star/></set>
+		<set var="solucion"><first><get var="tmp"/></first></set>
+		<set var="tmp"><rest><get var="tmp"/></rest></set>
+		<condition var="tmp">
+			<li value="NIL">
+			</li>
+			<li>
+				<set var="solucion"><get var="solucion"/>/<first><get var="tmp"/></first></set>
 				<set var="tmp"><rest><get var="tmp"/></rest></set>
 				<loop/>
 			</li>
