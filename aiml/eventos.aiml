@@ -2,7 +2,6 @@
 	<aiml version="2.0">
 
 	<!-- Falta:
-			- Comprobar que no haya eventos repetidos (con el set)
 			- Modificar invitados, fecha, hora y título
 			- Contar eventos de una fecha
 																	-->
@@ -27,141 +26,29 @@
 				<think>
 					<set name="nuevoTitulo"><srai>ponerbarrabaja <star/></srai></set>
 				</think>
-				Guardado, dime ahora el año de <get name="nuevoTitulo"/>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>año_valido</set> ^</pattern>
-			<that>GUARDADO, DIME AHORA EL AÑO DE *</that>
-			<template>
-				Ahora dime el mes del evento
-				<think>
-					<set name="nuevoAnio"><star index="2"/></set>
-				</think>
+				Guardado, dime ahora la fecha de <get name="nuevoTitulo"/> siguiendo el siguiente formato: <date jformat="d M yyyy"/>
 			</template>
 		</category>
 
 		<!-- Regla  -->
 		<category>
 			<pattern>*</pattern>
-			<that>DE ACUERDO, DIME EL AÑO DEL EVENTO</that>
+			<that>* DIME * LA FECHA DE *</that>
 			<template>
-				Solo puedes decir uno del 2017 al 2027
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>año_valido</set> ^</pattern>
-			<that>SOLO PUEDES DECIR UNO DEL 2017 AL 2027</that>
-			<template>
-				Ahora dime el mes del evento
 				<think>
-					<set name="nuevoAnio"><star index="2"/></set>
-				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>mes_valido</set> ^</pattern>
-			<that>AHORA DIME EL MES DEL EVENTO</that>
-			<template>
-				Dime ahora el dia
-				<think>
-					<set name="nuevoMes"><map name="mes_numero"><star index="2"/></map></set>
-				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>mes_valido_num</set> ^</pattern>
-			<that>AHORA DIME EL MES DEL EVENTO</that>
-			<template>
-				Dime ahora el dia
-				<think>
-					<set name="nuevoMes"><star index="2"/></set>
-					<condition name="nuevoMes">
-						<li value="0"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="1"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="2"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="3"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="4"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="5"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="6"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="7"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="8"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="9"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
+					<set name="nuevaFecha"><star/></set>
+					<set var="comprobacionFecha"><srai>validdate <star/></srai></set>
+					<condition var="comprobacionFecha">
+						<li value="YES">
+							<set var="hablar">Ya tenemos la fecha, vamos ahora con la hora, primero dime la hora y despues si es a y media o no</set>
+							<set name="nuevaFecha"><srai>ponerdiagonal <get name="nuevaFecha"/></srai></set>
+						</li>
+						<li value="NO">
+							<set var="hablar">No has dicho una fecha valida, dime otra vez la fecha de <get name="nuevoTitulo"/> siguiendo el siguiente formato: <date jformat="dd MM yyyy"/></set>
+						</li>
 					</condition>
 				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>mes_valido_num</set> ^</pattern>
-			<that>ESE MES NO EXISTE, INTRODUCE UN MES VALIDO</that>
-			<template>
-				Dime ahora el dia
-				<think>
-					<set name="nuevoMes"><star index="2"/></set>
-					 <condition name="nuevoMes">
-						<li value="0"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="1"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="2"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="3"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="4"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="5"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="6"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="7"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="8"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-						<li value="9"><set name="nuevoMes">0<get name="nuevoMes"></get></set></li>
-					</condition>
-				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>*</pattern>
-			<that>AHORA DIME EL MES DEL EVENTO</that>
-			<template>
-				Ese mes no existe, introduce un mes valido
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>dias_validos</set> ^</pattern>
-			<that>DIME AHORA EL DIA</that>
-			<template>
-				Ya tenemos la fecha, vamos ahora con la hora, primero dime la hora y despues si es a y media o no
-				<think>
-					<set name="nuevoDia"><star index="2"/></set>
-					<condition name="nuevoDia">
-						<li value="1"><set name="nuevoDia">01</set></li>
-						<li value="2"><set name="nuevoDia">02</set></li>
-						<li value="3"><set name="nuevoDia">03</set></li>
-						<li value="4"><set name="nuevoDia">04</set></li>
-						<li value="5"><set name="nuevoDia">05</set></li>
-						<li value="6"><set name="nuevoDia">06</set></li>
-						<li value="7"><set name="nuevoDia">07</set></li>
-						<li value="8"><set name="nuevoDia">08</set></li>
-						<li value="9"><set name="nuevoDia">09</set></li>
-					</condition>
-				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>*</pattern>
-			<that>DIME AHORA EL DIA</that>
-			<template>
-				Ese no es un dia valido
+				<get var="hablar"/>
 			</template>
 		</category>
 
@@ -174,16 +61,16 @@
 				<think>
 					<set name="nuevaHora"><star index="2"/></set>
 					<condition name="nuevaHora">
-						<li value="0"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="1"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="2"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="3"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="4"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="5"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="6"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="7"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="8"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="9"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="0"><set name="nuevaHora">00</set></li>
+						<li value="1"><set name="nuevaHora">01</set></li>
+						<li value="2"><set name="nuevaHora">02</set></li>
+						<li value="3"><set name="nuevaHora">03</set></li>
+						<li value="4"><set name="nuevaHora">04</set></li>
+						<li value="5"><set name="nuevaHora">05</set></li>
+						<li value="6"><set name="nuevaHora">06</set></li>
+						<li value="7"><set name="nuevaHora">07</set></li>
+						<li value="8"><set name="nuevaHora">08</set></li>
+						<li value="9"><set name="nuevaHora">09</set></li>
 					</condition>
 				</think>
 			</template>
@@ -207,16 +94,16 @@
 				<think>
 					<set name="nuevaHora"><star index="2"/></set>
 					<condition name="nuevaHora">
-						<li value="0"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="1"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="2"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="3"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="4"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="5"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="6"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="7"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="8"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
-						<li value="9"><set name="nuevaHora">0<get name="nuevaHora"></get></set></li>
+						<li value="0"><set name="nuevaHora">00</set></li>
+						<li value="1"><set name="nuevaHora">01</set></li>
+						<li value="2"><set name="nuevaHora">02</set></li>
+						<li value="3"><set name="nuevaHora">03</set></li>
+						<li value="4"><set name="nuevaHora">04</set></li>
+						<li value="5"><set name="nuevaHora">05</set></li>
+						<li value="6"><set name="nuevaHora">06</set></li>
+						<li value="7"><set name="nuevaHora">07</set></li>
+						<li value="8"><set name="nuevaHora">08</set></li>
+						<li value="9"><set name="nuevaHora">09</set></li>
 					</condition>
 				</think>
 			</template>
@@ -230,19 +117,19 @@
 				<think>
 					<set name="nuevaHora"><get name="nuevaHora"/>30</set>
 				</think>
-				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/>
+				La fecha completa es <set name="claveFecha"><get name="nuevaFecha"/></set> a las <get name="nuevaHora"/>
 				<think>
 					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set>
-					<!--<set var="presente"><srai>finditem <get name="claveFechaHora"/> in <readset>fecha_hora</readset></srai></set>
-					<condition var="presente">
-						<li value="0">-->
+					<set var="comprobacion"><srai>finditem <get name="claveFechaHora"/> in <readset>fecha_hora</readset></srai></set>
+					<condition var="comprobacion">
+						<li value="0">
 							<set var="respuesta">Va alguien contigo?</set>
 							<set name="topic">invitados</set>
-						<!--</li>
-						<li>
-							<set var="respuesta">Acabo de darme cuenta de que ya tienes un evento para esa hora. Puedes modificarlo o borrarlo si asi lo deseas.</set>
 						</li>
-					</condition>-->
+						<li>
+							<set var="respuesta">Estas ocupado en ese momento, no puedes guardar más eventos el <get name="claveFechaHora"/></set>
+						</li>
+					</condition>
 				</think>
 				<get var="respuesta"/>
 			</template>
@@ -256,20 +143,19 @@
 				<think>
 					<set name="nuevaHora"><get name="nuevaHora"/>00</set>
 				</think>
-				La fecha completa es <set name="claveFecha"><get name="nuevoDia"/>/<get name="nuevoMes"/>/<get name="nuevoAnio"/></set> a las <get name="nuevaHora"/>
+				La fecha completa es <set name="claveFecha"><get name="nuevaFecha"/></set> a las <get name="nuevaHora"/>
 				<think>
 					<set name="claveFechaHora"><get name="claveFecha"/>_<get name="nuevaHora"/></set>
-					
-					<!--<set var="presente"><srai>finditem <get name="claveFechaHora"/> in <readset>fecha_hora</readset></srai></set>
-					<condition var="presente">
-						<li value="1">-->
+					<set var="comprobacion"><srai>finditem <get name="claveFechaHora"/> in <readset>fecha_hora</readset></srai></set>
+					<condition var="comprobacion">
+						<li value="0">
 							<set var="respuesta">Va alguien contigo?</set>
 							<set name="topic">invitados</set>
-						<!--</li>
-						<li>
-							<set var="respuesta">Acabo de darme cuenta de que ya tienes un evento para esa hora. Puedes modificarlo o borrarlo si asi lo deseas.</set>
 						</li>
-					</condition>-->
+						<li>
+							<set var="respuesta">Estas ocupado en ese momento, no puedes guardar más eventos el <get name="claveFechaHora"/></set>
+						</li>
+					</condition>
 				</think>
 				<get var="respuesta"/>
 			</template>
@@ -295,7 +181,7 @@
 				<think>
 					<condition name="nuevoInvitado">
 						<li value="unknown"><set name="nuevoInvitado"><star/></set></li>
-						<li><set name="nuevoInvitado"><get name="nuevoInvitado"/>/<star/></set> </li>
+						<li><set name="nuevoInvitado"><get name="nuevoInvitado"/> <star/></set> </li>
 					</condition>
 				</think>
 			</template>
@@ -403,7 +289,7 @@
 				<think>
 					<condition name="nuevoInvitado">
 						<li value="unknown"><set name="nuevoInvitado"><star/></set></li>
-						<li><set name="nuevoInvitado"><get name="nuevoInvitado"/>/<star/></set></li>
+						<li><set name="nuevoInvitado"><get name="nuevoInvitado"/> <star/></set></li>
 					</condition>
 				</think>
 			</template>
@@ -589,16 +475,16 @@
 				<think>
 					<set name="borrarHora"><star index="2"/></set>
 					<condition name="borrarHora">
-						<li value="0"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="1"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="2"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="3"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="4"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="5"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="6"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="7"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="8"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="9"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="0"><set name="borrarHora">00</set></li>
+						<li value="1"><set name="borrarHora">01</set></li>
+						<li value="2"><set name="borrarHora">02</set></li>
+						<li value="3"><set name="borrarHora">03</set></li>
+						<li value="4"><set name="borrarHora">04</set></li>
+						<li value="5"><set name="borrarHora">05</set></li>
+						<li value="6"><set name="borrarHora">06</set></li>
+						<li value="7"><set name="borrarHora">07</set></li>
+						<li value="8"><set name="borrarHora">08</set></li>
+						<li value="9"><set name="borrarHora">09</set></li>
 					</condition>
 				</think>
 			</template>
@@ -622,16 +508,16 @@
 				<think>
 					<set name="borrarHora"><star index="2"/></set>
 					<condition name="borrarHora">
-						<li value="0"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="1"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="2"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="3"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="4"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="5"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="6"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="7"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="8"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
-						<li value="9"><set name="borrarHora">0<get name="borrarHora"></get></set></li>
+						<li value="0"><set name="borrarHora">00</set></li>
+						<li value="1"><set name="borrarHora">01</set></li>
+						<li value="2"><set name="borrarHora">02</set></li>
+						<li value="3"><set name="borrarHora">03</set></li>
+						<li value="4"><set name="borrarHora">04</set></li>
+						<li value="5"><set name="borrarHora">05</set></li>
+						<li value="6"><set name="borrarHora">06</set></li>
+						<li value="7"><set name="borrarHora">07</set></li>
+						<li value="8"><set name="borrarHora">08</set></li>
+						<li value="9"><set name="borrarHora">09</set></li>
 					</condition>
 				</think>
 			</template>
@@ -861,16 +747,16 @@
 				<think>
 					<set name="modificarHora"><star index="2"/></set>
 					<condition name="modificarHora">
-						<li value="0"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="1"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="2"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="3"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="4"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="5"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="6"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="7"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="8"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="9"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="0"><set name="modificarHora">00</set></li>
+						<li value="1"><set name="modificarHora">01</set></li>
+						<li value="2"><set name="modificarHora">02</set></li>
+						<li value="3"><set name="modificarHora">03</set></li>
+						<li value="4"><set name="modificarHora">04</set></li>
+						<li value="5"><set name="modificarHora">05</set></li>
+						<li value="6"><set name="modificarHora">06</set></li>
+						<li value="7"><set name="modificarHora">07</set></li>
+						<li value="8"><set name="modificarHora">08</set></li>
+						<li value="9"><set name="modificarHora">09</set></li>
 					</condition>
 				</think>
 			</template>
@@ -894,16 +780,16 @@
 				<think>
 					<set name="modificarHora"><star index="2"/></set>
 					<condition name="modificarHora">
-						<li value="0"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="1"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="2"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="3"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="4"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="5"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="6"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="7"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="8"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
-						<li value="9"><set name="modificarHora">0<get name="modificarHora"></get></set></li>
+						<li value="0"><set name="modificarHora">00</set></li>
+						<li value="1"><set name="modificarHora">01</set></li>
+						<li value="2"><set name="modificarHora">02</set></li>
+						<li value="3"><set name="modificarHora">03</set></li>
+						<li value="4"><set name="modificarHora">04</set></li>
+						<li value="5"><set name="modificarHora">05</set></li>
+						<li value="6"><set name="modificarHora">06</set></li>
+						<li value="7"><set name="modificarHora">07</set></li>
+						<li value="8"><set name="modificarHora">08</set></li>
+						<li value="9"><set name="modificarHora">09</set></li>
 					</condition>
 				</think>
 			</template>
