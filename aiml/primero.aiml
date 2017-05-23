@@ -135,7 +135,7 @@
 	<category>
 		<pattern>Olvidalo</pattern>
 		<template>
-			Bueno, qué quieres hacer
+			Bueno, qué quieres hacer?
 		</template>
 	</category>
 
