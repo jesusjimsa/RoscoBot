@@ -16,7 +16,12 @@
 			</think>
 		</template>
 	</category>
-
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 	<topic name="nuevoEvento">
 		<!-- Regla  -->
 		<category>
@@ -81,14 +86,14 @@
 			<pattern>*</pattern>
 			<that>YA TENEMOS LA FECHA, VAMOS AHORA CON LA HORA. PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
 			<template>
-				Esa no es una hora valida
+				Esa no es una hora valida, introduce una correcta
 			</template>
 		</category>
 
 		<!-- Regla  -->
 		<category>
 			<pattern>^ <set>hora_valida</set> ^</pattern>
-			<that>ESA NO ES UNA HORA VALIDA</that>
+			<that>ESA NO ES UNA HORA VALIDA, INTRODUCE UNA CORRECTA</that>
 			<template>
 				Sera a y media?
 				<think>
@@ -161,7 +166,12 @@
 			</template>
 		</category>
 	</topic>
-
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 	<topic name="invitados">
 		<!-- Regla  -->
 		<category>
@@ -304,7 +314,12 @@
 			</template>
 		</category>
 	</topic>
-
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 	<!-- Regla  -->
 	<category>
 		<pattern>[Cuantos Cuantas] [cita evento reunion aviso recordatorio acontecimiento]+ ^ ^</pattern>
@@ -319,150 +334,48 @@
 			</condition>
 		</template>
 	</category>
-
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 	<!-- Regla  -->
 	<category>
 		<pattern>^ [elimina quita borra]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
 		<template>
-			Vale, dime el año del evento que quieres borrar
+			Vale, dime la fecha del evento que quieres borrar siguiendo el siguiente formato: <date jformat="d M yyyy"/>
 			<think>
 				<set name="topic">BorrarEvento</set>
 			</think>
 		</template>
 	</category>
-	
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 	<topic name="BorrarEvento">
 		<!-- Regla  -->
 		<category>
-			<pattern>^ <set>año_valido</set> ^</pattern>
-			<that>VALE, DIME EL AÑO DEL EVENTO QUE QUIERES BORRAR</that>
-			<template>
-				Ahora dime el mes del evento
-				<think>
-					<set name="borrarAnio"><star index="2"/></set>
-				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
 			<pattern>*</pattern>
-			<that>VALE, DIME EL AÑO DEL EVENTO QUE QUIERES BORRAR</that>
+			<that>* DIME ^ LA FECHA DEL *</that>
 			<template>
-				Solo puedes decir uno del 2017 al 2027
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>año_valido</set> ^</pattern>
-			<that>SOLO PUEDES DECIR UNO DEL 2017 AL 2027</that>
-			<template>
-				Ahora dime el mes del evento
 				<think>
-					<set name="borrarAnio"><star index="2"/></set>
-				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>mes_valido</set> ^</pattern>
-			<that>AHORA DIME EL MES DEL EVENTO</that>
-			<template>
-				Dime ahora el dia
-				<think>
-					<set name="borrarMes"><map name="mes_numero"><star index="2"/></map></set>
-				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>mes_valido_num</set> ^</pattern>
-			<that>AHORA DIME EL MES DEL EVENTO</that>
-			<template>
-				Dime ahora el dia
-				<think>
-					<set name="borrarMes"><star index="2"/></set>
-					<condition name="borrarMes">
-						<li value="0"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="1"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="2"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="3"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="4"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="5"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="6"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="7"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="8"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="9"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
+					<set name="borrarFecha"><star/></set>
+					<set var="comprobacionFecha"><srai>validdate <star/></srai></set>
+					<condition var="comprobacionFecha">
+						<li value="YES">
+							<set var="hablar">Ya tenemos la fecha, vamos ahora con la hora, primero dime la hora y despues si es a y media o no</set>
+							<set name="borrarFecha"><srai>ponerdiagonal <get name="borrarFecha"/></srai></set>
+						</li>
+						<li value="NO">
+							<set var="hablar">No has dicho una fecha valida, dime otra vez la fecha del evento que quieres borrar siguiendo el siguiente formato: <date jformat="dd MM yyyy"/></set>
+						</li>
 					</condition>
 				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>mes_valido_num</set> ^</pattern>
-			<that>ESE MES NO EXISTE, INTRODUCE UN MES VALIDO</that>
-			<template>
-				Dime ahora el dia
-				<think>
-					<set name="borrarMes"><star index="2"/></set>
-					 <condition name="borrarMes">
-						<li value="0"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="1"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="2"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="3"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="4"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="5"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="6"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="7"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="8"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-						<li value="9"><set name="borrarMes">0<get name="borrarMes"></get></set></li>
-					</condition>
-				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>*</pattern>
-			<that>AHORA DIME EL MES DEL EVENTO</that>
-			<template>
-				Ese mes no existe, introduce un mes valido
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>^ <set>dias_validos</set> ^</pattern>
-			<that>DIME AHORA EL DIA</that>
-			<template>
-				Ya tenemos la fecha, vamos ahora con la hora, primero dime la hora y despues si es a y media o no
-				<think>
-					<set name="borrarDia"><star index="2"/></set>
-					<condition name="borrarDia">
-						<li value="1"><set name="borrarDia">01</set></li>
-						<li value="2"><set name="borrarDia">02</set></li>
-						<li value="3"><set name="borrarDia">03</set></li>
-						<li value="4"><set name="borrarDia">04</set></li>
-						<li value="5"><set name="borrarDia">05</set></li>
-						<li value="6"><set name="borrarDia">06</set></li>
-						<li value="7"><set name="borrarDia">07</set></li>
-						<li value="8"><set name="borrarDia">08</set></li>
-						<li value="9"><set name="borrarDia">09</set></li>
-					</condition>
-				</think>
-			</template>
-		</category>
-
-		<!-- Regla  -->
-		<category>
-			<pattern>*</pattern>
-			<that>DIME AHORA EL DIA</that>
-			<template>
-				Ese no es un dia valido
+				<get var="hablar"/>
 			</template>
 		</category>
 
@@ -471,7 +384,7 @@
 			<pattern>^ <set>hora_valida</set> ^</pattern>
 			<that>YA TENEMOS LA FECHA, VAMOS AHORA CON LA HORA, PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
 			<template>
-				Sera a y media?
+				Es a y media?
 				<think>
 					<set name="borrarHora"><star index="2"/></set>
 					<condition name="borrarHora">
@@ -495,16 +408,16 @@
 			<pattern>*</pattern>
 			<that>YA TENEMOS LA FECHA, VAMOS AHORA CON LA HORA. PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
 			<template>
-				Esa no es una hora valida
+				Esa no es una hora valida, introduce una correcta
 			</template>
 		</category>
 
 		<!-- Regla  -->
 		<category>
 			<pattern>^ <set>hora_valida</set> ^</pattern>
-			<that>ESA NO ES UNA HORA VALIDA</that>
+			<that>ESA NO ES UNA HORA VALIDA, INTRODUCE UNA CORRECTA</that>
 			<template>
-				Sera a y media?
+				Es a y media?
 				<think>
 					<set name="borrarHora"><star index="2"/></set>
 					<condition name="borrarHora">
@@ -526,12 +439,12 @@
 		<!-- Regla  -->
 		<category>
 			<pattern>[Si Exacto Afirmativo Correcto 30] ^</pattern>
-			<that>SERA A Y MEDIA</that>
+			<that>ES A Y MEDIA</that>
 			<template>
 				<think>
 					<set name="borrarHora"><get name="borrarHora"/>30</set>
 				</think>
-				Se va a borrar el evento del <set name="claveBorrarFecha"><get name="borrarDia"/>/<get name="borrarMes"/>/<get name="borrarAnio"/></set>_<get name="borrarHora"/>
+				Se va a borrar el evento del <set name="claveBorrarFecha"><get name="borrarFecha"/></set>_<get name="borrarHora"/>
 				Estas seguro?
 				<think>
 					<set name="claveBorrarFechaHora"><get name="claveBorrarFecha"/>_<get name="borrarHora"/></set>
@@ -542,12 +455,12 @@
 		<!-- Regla  -->
 		<category>
 			<pattern>[No Negativo Nope 00] ^</pattern>
-			<that>SERA A Y MEDIA</that>
+			<that>ES A Y MEDIA</that>
 			<template>
 				<think>
 					<set name="borrarHora"><get name="borrarHora"/>00</set>
 				</think>
-				Se va a borrar el evento del <set name="claveBorrarFecha"><get name="borrarDia"/>/<get name="borrarMes"/>/<get name="borrarAnio"/></set>_<get name="borrarHora"/>
+				Se va a borrar el evento del <set name="claveBorrarFecha"><get name="borrarFecha"/></set>_<get name="borrarHora"/>
 				Estas seguro?
 				<think>
 					<set name="claveBorrarFechaHora"><get name="claveBorrarFecha"/>_<get name="borrarHora"/></set>
@@ -558,7 +471,7 @@
 		<!-- Regla  -->
 		<category>
 			<pattern>[Si Exacto Afirmativo Correcto] ^</pattern>
-			<that>SE VA A BORRAR EL EVENTO DEL * ESTAS SEGURO</that>
+			<that>SE VA A BORRAR EL EVENTO DEL *</that>
 			<template>
 				<think>
 					<removefrommap>
@@ -585,12 +498,18 @@
 		<!-- Regla  -->
 		<category>
 			<pattern>[No Negativo Nope] ^</pattern>
-			<that>SE VA A BORRAR EL EVENTO DEL * ESTAS SEGURO</that>
+			<that>SE VA A BORRAR EL EVENTO DEL *</that>
 			<template>
 				Entonces no borro nada
 			</template>
 		</category>
 	</topic>
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 
 	<!-- Regla 15 -->
 	<category>
@@ -602,7 +521,12 @@
 			</think>
 		</template>
 	</category>
-
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 	<topic name="modificarEvento">
 		<!-- Regla  -->
 		<category>
@@ -767,14 +691,14 @@
 			<pattern>*</pattern>
 			<that>YA TENEMOS LA FECHA, VAMOS AHORA CON LA HORA. PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
 			<template>
-				Esa no es una hora valida
+				Esa no es una hora valida, introduce una correcta
 			</template>
 		</category>
 
 		<!-- Regla  -->
 		<category>
 			<pattern>^ <set>hora_valida</set> ^</pattern>
-			<that>ESA NO ES UNA HORA VALIDA</that>
+			<that>ESA NO ES UNA HORA VALIDA, INTRODUCE UNA CORRECTA</that>
 			<template>
 				Sera a y media?
 				<think>
