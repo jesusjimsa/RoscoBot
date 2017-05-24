@@ -187,4 +187,12 @@
 		</template>
 	</category>
 
+	<!-- Regla 21 -->
+	<category>
+		<pattern>Cual es tu pelicula favorita+ ^ ^</pattern>
+		<template>
+			Es <bot name="pelifavorita"/>
+		</template>
+	</category>
+
 	</aiml>
