@@ -2,7 +2,6 @@
 	<aiml version="2.0">
 
 	<!-- Falta:
-			- Modificar invitados
 			- Contar eventos de una fecha
 																	-->
 
@@ -656,19 +655,19 @@
 					<condition var="cambiar">
 						<li value="contactos">
 							<set name="topic">cambiarPersonas</set>
-							<set var="respuesta">Quieres añadir o quitar un contacto?</set> 
+							<set var="respuesta">Quieres añadir o quitar un contacto?</set>
 						</li>
 						<li value="fecha">
 							<set name="topic">cambiarDia</set>
-							<set var="respuesta">Ahora dime la nueva fecha del evento</set> 
+							<set var="respuesta">Ahora dime la nueva fecha del evento</set>
 						</li>
 						<li value="hora">
 							<set name="topic">cambiarHora</set>
-							<set var="respuesta">Cual es la nueva hora?</set> 
+							<set var="respuesta">Cual es la nueva hora?</set>
 						</li>
 						<li value="titulo">
 							<set name="topic">cambiarTitulo</set>
-							<set var="respuesta">Cual es el nuevo titulo?</set> 
+							<set var="respuesta">Cual es el nuevo titulo?</set>
 						</li>
 					</condition>
 				</think>
@@ -736,12 +735,7 @@
 				</think>
 			</template>
 		</category>
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
 		<!-- Regla  -->
 		<category>
 			<pattern><set>apellidos</set></pattern>
@@ -749,33 +743,27 @@
 			<template>
 				Ya esta quitado del evento
 				<think>
-					<set var="comprobacion"><srai>finditem <star/> in <map name="evper"><get name="claveModificarFechaHora"/></map></srai></set>
-					<condition var="comprobacion">
-						<li value="0">
-							<get var="comprobacion"/>
+					 <set var="comprobacionNum"><srai>finditem <star/> in <map name="evper"><get name="claveModificarFechaHora"/></map></srai></set>
+					 <condition var="comprobacionNum">
+					 	<li value="0">
+						 	<!-- No se hace nada porque no hay que borrar nada -->
 						</li>
 						<li>
-							<set var="nuevoValor"><srai>removeitem <get name="comprobacion"/> in <map name="evper"><get name="claveModificarFechaHora"/></map></srai></set>
 							<modifymap>
 								<name>evper</name>
 								<key><get name="claveModificarFechaHora"/></key>
-								<value><get var="nuevoValor"/></value>
+								<value><srai>removeitem <srai>finditem <star/> in <map name="evper"><get name="claveModificarFechaHora"/></map></srai> in <map name="evper"><get name="claveModificarFechaHora"/></map></srai></value>
 							</modifymap>
 						</li>
-					</condition>
+					 </condition>
 				</think>
 			</template>
 		</category>
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
 		<!-- Regla  -->
 		<category>
 			<pattern>*</pattern>
-			<that>CUAL ES EL APELLIDO DE LA PERSONA *</that>
+			<that>CUAL ES EL APELLIDO DE LA ^</that>
 			<template>
 				No tienes ninguna persona en la agenda con ese nombre
 			</template>
@@ -1024,5 +1012,5 @@
 			</template>
 		</category>
 	</topic>
-		
+
 	</aiml>
