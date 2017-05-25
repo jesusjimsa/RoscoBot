@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<aiml version="2.0">
 
-	<!-- Falta:
-			- Contar eventos de una fecha
-																	-->
-
-	<!-- Regla  -->
+	<!-- Regla 1 -->
 	<category>
 		<pattern>^ [añad guard nuevo crea]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
 		<template>
@@ -15,14 +11,9 @@
 			</think>
 		</template>
 	</category>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
 	<topic name="nuevoEvento">
-		<!-- Regla  -->
+		<!-- Regla 2 -->
 		<category>
 			<pattern>*</pattern>
 			<that>DE ACUERDO, DIME EL TITULO DEL EVENTO</that>
@@ -34,7 +25,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 3 -->
 		<category>
 			<pattern>*</pattern>
 			<that>* DIME * LA FECHA DE *</that>
@@ -56,7 +47,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 4 -->
 		<category>
 			<pattern>^ <set>hora_valida</set> ^</pattern>
 			<that>YA TENGO LA FECHA, VAMOS AHORA CON LA HORA, PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
@@ -80,7 +71,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 5 -->
 		<category>
 			<pattern>*</pattern>
 			<that>YA TENGO LA FECHA, VAMOS AHORA CON LA HORA. PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
@@ -89,7 +80,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 6 -->
 		<category>
 			<pattern>^ <set>hora_valida</set> ^</pattern>
 			<that>ESA NO ES UNA HORA VALIDA, INTRODUCE UNA CORRECTA</that>
@@ -113,7 +104,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 7 -->
 		<category>
 			<pattern>[Si Exacto Afirmativo Correcto 30] ^</pattern>
 			<that>SERA A Y MEDIA</that>
@@ -139,7 +130,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 8 -->
 		<category>
 			<pattern>[No Negativo Nope 00] ^</pattern>
 			<that>SERA A Y MEDIA</that>
@@ -165,14 +156,9 @@
 			</template>
 		</category>
 	</topic>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
 	<topic name="invitados">
-		<!-- Regla  -->
+		<!-- Regla 9 -->
 		<category>
 			<pattern>[Si Exacto Afirmativo Correcto] ^</pattern>
 			<that>LA FECHA COMPLETA ES *</that>
@@ -181,7 +167,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 10 -->
 		<category>
 			<pattern><set>apellidos</set></pattern>
 			<that>COMO SE LLAMA</that>
@@ -196,7 +182,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 11 -->
 		<category>
 			<pattern>[No Negativo Nope] ^</pattern>
 			<that>LA FECHA COMPLETA ES *</that>
@@ -238,7 +224,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 12 -->
 		<category>
 			<pattern>[Si Exacto Afirmativo Correcto] ^</pattern>
 			<that>* ALGUIEN MAS</that>
@@ -247,7 +233,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 13 -->
 		<category>
 			<pattern>[No Negativo Nope] ^</pattern>
 			<that>* ALGUIEN MAS</that>
@@ -289,7 +275,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 14 -->
 		<category>
 			<pattern><set>apellidos</set></pattern>
 			<that>* ALGUIEN MAS</that>
@@ -304,7 +290,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 15 -->
 		<category>
 			<pattern>*</pattern>
 			<that>^ ALGUIEN MAS</that>
@@ -313,7 +299,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 16 -->
 		<category>
 			<pattern>*</pattern>
 			<that>LA FECHA COMPLETA ES *</that>
@@ -322,13 +308,8 @@
 			</template>
 		</category>
 	</topic>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-	<!-- Regla  -->
+
+	<!-- Regla 17 -->
 	<category>
 		<pattern>[Cuantos Cuantas] [cita evento reunion aviso recordatorio acontecimiento]+ ^ ^</pattern>
 		<template>
@@ -342,13 +323,8 @@
 			</condition>
 		</template>
 	</category>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-	<!-- Regla  -->
+
+	<!-- Regla 18 -->
 	<category>
 		<pattern>^ [elimina quita borra]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
 		<template>
@@ -358,14 +334,9 @@
 			</think>
 		</template>
 	</category>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+	
 	<topic name="BorrarEvento">
-		<!-- Regla  -->
+		<!-- Regla 19 -->
 		<category>
 			<pattern>*</pattern>
 			<that>* DIME ^ LA FECHA DEL *</that>
@@ -387,7 +358,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 20 -->
 		<category>
 			<pattern>^ <set>hora_valida</set> ^</pattern>
 			<that>YA TENGO LA FECHA, VAMOS AHORA CON LA HORA, PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
@@ -411,7 +382,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 21 -->
 		<category>
 			<pattern>*</pattern>
 			<that>YA TENGO LA FECHA, VAMOS AHORA CON LA HORA. PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
@@ -420,7 +391,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 22 -->
 		<category>
 			<pattern>^ <set>hora_valida</set> ^</pattern>
 			<that>ESA NO ES UNA HORA VALIDA, INTRODUCE UNA CORRECTA</that>
@@ -444,7 +415,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 23 -->
 		<category>
 			<pattern>[Si Exacto Afirmativo Correcto 30] ^</pattern>
 			<that>ES A Y MEDIA</that>
@@ -460,7 +431,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 24 -->
 		<category>
 			<pattern>[No Negativo Nope 00] ^</pattern>
 			<that>ES A Y MEDIA</that>
@@ -476,7 +447,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 25 -->
 		<category>
 			<pattern>[Si Exacto Afirmativo Correcto] ^</pattern>
 			<that>SE VA A BORRAR EL EVENTO DEL *</that>
@@ -503,7 +474,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 26 -->
 		<category>
 			<pattern>[No Negativo Nope] ^</pattern>
 			<that>SE VA A BORRAR EL EVENTO DEL *</that>
@@ -512,13 +483,8 @@
 			</template>
 		</category>
 	</topic>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-	<!-- Regla  -->
+
+	<!-- Regla 27 -->
 	<category>
 		<pattern>^ [cambia modifica actualiza]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
 		<template>
@@ -528,14 +494,9 @@
 			</think>
 		</template>
 	</category>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
 	<topic name="modificarEvento">
-		<!-- Regla  -->
+		<!-- Regla 28 -->
 		<category>
 			<pattern>*</pattern>
 			<that>* DIME ^ LA FECHA DEL *</that>
@@ -557,7 +518,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 29 -->
 		<category>
 			<pattern>^ <set>hora_valida</set> ^</pattern>
 			<that>YA TENGO LA FECHA, VAMOS AHORA CON LA HORA, PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
@@ -581,7 +542,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 30 -->
 		<category>
 			<pattern>*</pattern>
 			<that>YA TENGO LA FECHA, VAMOS AHORA CON LA HORA. PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
@@ -590,7 +551,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 31 -->
 		<category>
 			<pattern>^ <set>hora_valida</set> ^</pattern>
 			<that>ESA NO ES UNA HORA VALIDA, INTRODUCE UNA CORRECTA</that>
@@ -614,7 +575,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 32 -->
 		<category>
 			<pattern>[Si Exacto Afirmativo Correcto 30] ^</pattern>
 			<that>SERA A Y MEDIA</that>
@@ -630,7 +591,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 33 -->
 		<category>
 			<pattern>[No Negativo Nope 00] ^</pattern>
 			<that>SERA A Y MEDIA</that>
@@ -646,7 +607,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 34 -->
 		<category>
 			<pattern>*</pattern>
 			<template>
@@ -675,7 +636,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 35 -->
 		<category>
 			<pattern>Nada ^</pattern>
 			<template>
@@ -683,14 +644,9 @@
 			</template>
 		</category>
 	</topic>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
 	<topic name="cambiarPersonas">
-		<!-- Regla  -->
+		<!-- Regla 36 -->
 		<category>
 			<pattern>Añadir</pattern>
 			<that>QUIERES AÑADIR O QUITAR UN CONTACTO</that>
@@ -699,7 +655,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 37 -->
 		<category>
 			<pattern>Quitar</pattern>
 			<that>QUIERES AÑADIR O QUITAR UN CONTACTO</that>
@@ -708,7 +664,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 38 -->
 		<category>
 			<pattern><set>apellidos</set></pattern>
 			<that>CUAL ES EL APELLIDO DE LA PERSONA A AÑADIR</that>
@@ -736,7 +692,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 39 -->
 		<category>
 			<pattern><set>apellidos</set></pattern>
 			<that>CUAL ES EL APELLIDO DE LA PERSONA A QUITAR *</that>
@@ -760,7 +716,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 40 -->
 		<category>
 			<pattern>*</pattern>
 			<that>CUAL ES EL APELLIDO DE LA ^</that>
@@ -769,14 +725,9 @@
 			</template>
 		</category>
 	</topic>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
 	<topic name="cambiarTitulo">
-		<!-- Regla  -->
+		<!-- Regla 41 -->
 		<category>
 			<pattern>*</pattern>
 			<that>CUAL ES EL NUEVO TITULO</that>
@@ -792,14 +743,9 @@
 			</template>
 		</category>
 	</topic>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
 	<topic name="cambiarDia">
-		<!-- Regla  -->
+		<!-- Regla 42 -->
 		<category>
 			<pattern>*</pattern>
 			<that>* DIME * FECHA *</that>
@@ -867,14 +813,9 @@
 			</template>
 		</category>
 	</topic>
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
-<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
 	<topic name="cambiarHora">
-		<!-- Regla  -->
+		<!-- Regla 43 -->
 		<category>
 			<pattern><set>hora_valida</set></pattern>
 			<that>* LA NUEVA HORA</that>
@@ -886,7 +827,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 44 -->
 		<category>
 			<pattern>*</pattern>
 			<that>CUAL ES LA NUEVA HORA</that>
@@ -895,7 +836,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 45 -->
 		<category>
 			<pattern>[Si Exacto Afirmativo Correcto 30] ^</pattern>
 			<that>ES A Y MEDIA</that>
@@ -953,7 +894,7 @@
 			</template>
 		</category>
 
-		<!-- Regla  -->
+		<!-- Regla 46 -->
 		<category>
 			<pattern>[No Negativo Nope 00] ^</pattern>
 			<that></that>
@@ -1009,6 +950,181 @@
 						</li>
 					</condition>
 				</think>
+			</template>
+		</category>
+	</topic>
+
+	<!-- Regla 47 -->
+	<category>
+		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] un+ ^ [evento cita reunion aviso recordatorio acontecimiento]</pattern>
+		<template>
+			Vale, dime la fecha del evento que quieres mostrar
+			<think>
+				<set name="topic">mostrarEvento</set>
+			</think>
+		</template>
+	</category>
+
+	<topic name="mostrarEvento">
+		<!-- Regla 48 -->
+		<category>
+			<pattern>*</pattern>
+			<that>* DIME ^ LA FECHA DEL *</that>
+			<template>
+				<think>
+					<set name="mostrarFecha"><star/></set>
+					<set var="comprobacionFecha"><srai>validdate <star/></srai></set>
+					<condition var="comprobacionFecha">
+						<li value="YES">
+							<set var="hablar">Ya tengo la fecha, vamos ahora con la hora, primero dime la hora y despues si es a y media o no</set>
+							<set name="mostrarFecha"><srai>ponerdiagonal <get name="mostrarFecha"/></srai></set>
+						</li>
+						<li value="NO">
+							<set var="hablar">No has dicho una fecha valida, dime otra vez la fecha del evento que quieres mostrar siguiendo el siguiente formato: <date jformat="dd MM yyyy"/></set>
+						</li>
+					</condition>
+				</think>
+				<get var="hablar"/>
+			</template>
+		</category>
+
+		<!-- Regla 49 -->
+		<category>
+			<pattern>^ <set>hora_valida</set> ^</pattern>
+			<that>YA TENGO LA FECHA, VAMOS AHORA CON LA HORA, PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
+			<template>
+				Sera a y media?
+				<think>
+					<set name="mostrarHora"><star index="2"/></set>
+					<condition name="mostrarHora">
+						<li value="0"><set name="mostrarHora">00</set></li>
+						<li value="1"><set name="mostrarHora">01</set></li>
+						<li value="2"><set name="mostrarHora">02</set></li>
+						<li value="3"><set name="mostrarHora">03</set></li>
+						<li value="4"><set name="mostrarHora">04</set></li>
+						<li value="5"><set name="mostrarHora">05</set></li>
+						<li value="6"><set name="mostrarHora">06</set></li>
+						<li value="7"><set name="mostrarHora">07</set></li>
+						<li value="8"><set name="mostrarHora">08</set></li>
+						<li value="9"><set name="mostrarHora">09</set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla 50 -->
+		<category>
+			<pattern>*</pattern>
+			<that>YA TENGO LA FECHA, VAMOS AHORA CON LA HORA. PRIMERO DIME LA HORA Y DESPUES SI ES A Y MEDIA O NO</that>
+			<template>
+				Esa no es una hora valida, introduce una correcta
+			</template>
+		</category>
+
+		<!-- Regla 51 -->
+		<category>
+			<pattern>^ <set>hora_valida</set> ^</pattern>
+			<that>ESA NO ES UNA HORA VALIDA, INTRODUCE UNA CORRECTA</that>
+			<template>
+				Sera a y media?
+				<think>
+					<set name="mostrarHora"><star index="2"/></set>
+					<condition name="mostrarHora">
+						<li value="0"><set name="mostrarHora">00</set></li>
+						<li value="1"><set name="mostrarHora">01</set></li>
+						<li value="2"><set name="mostrarHora">02</set></li>
+						<li value="3"><set name="mostrarHora">03</set></li>
+						<li value="4"><set name="mostrarHora">04</set></li>
+						<li value="5"><set name="mostrarHora">05</set></li>
+						<li value="6"><set name="mostrarHora">06</set></li>
+						<li value="7"><set name="mostrarHora">07</set></li>
+						<li value="8"><set name="mostrarHora">08</set></li>
+						<li value="9"><set name="mostrarHora">09</set></li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla 52 -->
+		<category>
+			<pattern>[Si Exacto Afirmativo Correcto 30] ^</pattern>
+			<that>SERA A Y MEDIA</that>
+			<template>
+				<think>
+					<set name="mostrarHora"><get name="mostrarHora"/>30</set>
+					<set name="claveMostrarFecha"><get name="mostrarFecha"/></set>_<get name="mostrarHora"/>
+					<set name="claveMostrarFechaHora"><get name="claveMostrarFecha"/>_<get name="mostrarHora"/></set>
+				</think>
+				Aqui tienes:
+					Titulo: <map name="evento"><get name="claveMostrarFechaHora"/></map>
+					Fecha y hora: <get name="claveMostrarFechaHora"/>
+					Invitados: <map name="evper"><get name="claveMostrarFechaHora"/></map>
+			</template>
+		</category>
+
+		<!-- Regla 53 -->
+		<category>
+			<pattern>[No Negativo Nope 00] ^</pattern>
+			<that>SERA A Y MEDIA</that>
+			<template>
+				<think>
+					<set name="mostrarHora"><get name="mostrarHora"/>00</set>
+					<set name="claveMostrarFecha"><get name="mostrarFecha"/></set>_<get name="mostrarHora"/>
+					<set name="claveMostrarFechaHora"><get name="claveMostrarFecha"/>_<get name="mostrarHora"/></set>
+				</think>
+				Aqui tienes:
+					Titulo: <map name="evento"><get name="claveMostrarFechaHora"/></map>
+					Fecha y hora: <get name="claveMostrarFechaHora"/>
+					Invitados: <map name="evper"><get name="claveMostrarFechaHora"/></map>
+			</template>
+		</category>
+	</topic>
+
+	<!-- Regla 54 -->
+	<category>
+		<pattern>[Cuantos Cuantas] [cita evento reunion aviso recordatorio acontecimiento]+ ^ tengo el *</pattern>
+		<template>
+			<think>
+					<set name="mostrarFecha"><star index="2"/></set>
+					<set var="comprobacionFecha"><srai>validdate <star index="2"/></srai></set>
+					<condition var="comprobacionFecha">
+						<li value="YES">
+							<set name="mostrarFecha"><srai>ponerdiagonal <get name="mostrarFecha"/></srai></set>
+							<set var="hablar">Tienes <srai>count <map name="momentos"><get name="mostrarFecha"/></map></srai> evento/s el día <get name="mostrarFecha"/></set>
+						</li>
+						<li value="NO">
+							<set var="hablar">No has dicho una fecha valida, dime otra vez la fecha del evento que quieres mostrar siguiendo el siguiente formato: <date jformat="dd MM yyyy"/></set>
+							<set name="topic">mostrarDeUnDia</set>
+						</li>
+						<li>
+							<set var="hablar">Esto que es</set>
+						</li>
+					</condition>
+				</think>
+				<get var="hablar"/>
+		</template>
+	</category>
+
+	<topic name="mostrarDeUnDia">
+		<!-- Regla 55 -->
+		<category>
+			<pattern>*</pattern>
+			<that>* DIME ^ LA FECHA DEL *</that>
+			<template>
+				<think>
+					<set name="mostrarFecha"><star/></set>
+					<set var="comprobacionFecha"><srai>validdate <star/></srai></set>
+					<condition var="comprobacionFecha">
+						<li value="YES">
+							<set name="mostrarFecha"><srai>ponerdiagonal <get name="mostrarFecha"/></srai></set>
+							<set var="hablar">Tienes <srai>count <map name="momentos"><get name="mostrarFecha"/></map></srai> el día <get name="mostrarFecha"/></set>
+						</li>
+						<li value="NO">
+							<set var="hablar">No has dicho una fecha valida, dime otra vez la fecha del evento que quieres mostrar siguiendo el siguiente formato: <date jformat="dd MM yyyy"/></set>
+						</li>
+					</condition>
+				</think>
+				<get var="hablar"/>
 			</template>
 		</category>
 	</topic>
