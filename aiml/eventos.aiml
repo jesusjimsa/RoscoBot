@@ -2,7 +2,7 @@
 	<aiml version="2.0">
 
 	<!-- Falta:
-			- Modificar invitados, fecha y hora
+			- Modificar invitados
 			- Contar eventos de una fecha
 																	-->
 
@@ -781,7 +781,12 @@
 			</template>
 		</category>
 	</topic>
-
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 	<topic name="cambiarTitulo">
 		<!-- Regla  -->
 		<category>
@@ -799,7 +804,12 @@
 			</template>
 		</category>
 	</topic>
-
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 	<topic name="cambiarDia">
 		<!-- Regla  -->
 		<category>
@@ -866,6 +876,151 @@
 					</condition>
 				</think>
 				<get var="hablar"/>
+			</template>
+		</category>
+	</topic>
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+	<topic name="cambiarHora">
+		<!-- Regla  -->
+		<category>
+			<pattern><set>hora_valida</set></pattern>
+			<that>* LA NUEVA HORA</that>
+			<template>
+				Es a y media?
+				<think>
+					<set name="nuevaHora"><star/></set>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>CUAL ES LA NUEVA HORA</that>
+			<template>
+				Esa no es una hora valida, dime otra vez la nueva hora
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[Si Exacto Afirmativo Correcto 30] ^</pattern>
+			<that>ES A Y MEDIA</that>
+			<template>
+				Ya he modificado la hora del evento
+				<think>
+					<set name="nuevaHora"><get name="nuevaHora"/>30</set>
+					<set name="nuevaFecha"><get name="modificarFecha"/>_<get name="nuevaHora"/></set>
+					<set var="tituloAux"><map name="evento"><get name="claveModificarFechaHora"/></map></set>
+					<set var="personasAux"><map name="evper"><get name="claveModificarFechaHora"/></map></set>
+					<removefrommap>
+						<name>evento</name>
+						<key><get name="claveModificarFechaHora"/></key>
+					</removefrommap>
+					<addtomap>
+						<name>evento</name>
+						<key><get name="nuevaFecha"/></key>
+						<value><get var="tituloAux"/></value>
+					</addtomap>
+					<removefrommap>
+						<name>evper</name>
+						<key><get name="claveModificarFechaHora"/></key>
+					</removefrommap>
+					<addtomap>
+						<name>evper</name>
+						<key><get name="nuevaFecha"/></key>
+						<value><get var="personasAux"/></value>
+					</addtomap>
+					<removefromset>
+						<name>fecha_hora</name>
+						<key><get name="claveModificarFechaHora"/></key>
+					</removefromset>
+					<addtoset>
+						<name>fecha_hora</name>
+						<key><get name="nuevaFecha"/></key>
+					</addtoset>
+					<set var="comprobacionMomentos"><srai>count <map name="momentos"><get name="claveModificarFecha"/></map></srai></set>
+					<condition var="comprobacionMomentos">
+						<li value="1">
+							<modifymap>
+								<name>momentos</name>
+								<key><get name="claveModificarFecha"/></key>
+								<value><get name="nuevaHora"/></value>
+							</modifymap>
+						</li>
+						<li>
+							<modifymap>
+								<name>momentos</name>
+								<key><get name="claveModificarFecha"/></key>
+								<value><srai>changeitem <srai>finditem <get name="modificarHora"/> in <map name="momentos"><get name="claveModificarFecha"/></map></srai> by <get name="nuevaHora"/> in <map name="momentos"><get name="claveModificarFecha"/></map></srai></value>
+							</modifymap>
+						</li>
+					</condition>
+				</think>
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>[No Negativo Nope 00] ^</pattern>
+			<that></that>
+			<template>
+				Ya he modificado la hora del evento
+
+				<think>
+					<set name="nuevaHora"><get name="nuevaHora"/>00</set>
+					<set name="nuevaFecha"><get name="modificarFecha"/>_<get name="nuevaHora"/></set>
+					<set var="tituloAux"><map name="evento"><get name="claveModificarFechaHora"/></map></set>
+					<set var="personasAux"><map name="evper"><get name="claveModificarFechaHora"/></map></set>
+					<removefrommap>
+						<name>evento</name>
+						<key><get name="claveModificarFechaHora"/></key>
+					</removefrommap>
+					<addtomap>
+						<name>evento</name>
+						<key><get name="nuevaFecha"/></key>
+						<value><get var="tituloAux"/></value>
+					</addtomap>
+					<removefrommap>
+						<name>evper</name>
+						<key><get name="claveModificarFechaHora"/></key>
+					</removefrommap>
+					<addtomap>
+						<name>evper</name>
+						<key><get name="nuevaFecha"/></key>
+						<value><get var="personasAux"/></value>
+					</addtomap>
+					<removefromset>
+						<name>fecha_hora</name>
+						<key><get name="claveModificarFechaHora"/></key>
+					</removefromset>
+					<addtoset>
+						<name>fecha_hora</name>
+						<key><get name="nuevaFecha"/></key>
+					</addtoset>
+					<set var="comprobacionMomentos"><srai>count <map name="momentos"><get name="claveModificarFecha"/></map></srai></set>
+					<condition var="comprobacionMomentos">
+						<li value="1">
+							<modifymap>
+								<name>momentos</name>
+								<key><get name="claveModificarFecha"/></key>
+								<value><get name="nuevaHora"/></value>
+							</modifymap>
+						</li>
+						<li>
+							<modifymap>
+								<name>momentos</name>
+								<key><get name="claveModificarFecha"/></key>
+								<value><srai>changeitem <srai>finditem <get name="modificarHora"/> in <map name="momentos"><get name="claveModificarFecha"/></map></srai> by <get name="nuevaHora"/> in <map name="momentos"><get name="claveModificarFecha"/></map></srai></value>
+							</modifymap>
+						</li>
+					</condition>
+				</think>
 			</template>
 		</category>
 	</topic>
