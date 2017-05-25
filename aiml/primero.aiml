@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<aiml version="2.0">
-	
+
 	<!-- Regla 1 -->
 	<category>
 		<pattern>Hola ^</pattern>
@@ -13,14 +13,14 @@
 			</random>
 		</template>
 	</category>
-	
+
 	<!-- Regla 2 -->
 	<category>
 		<pattern>^ bien ^</pattern>
 		<that>QUE TAL</that>
 		<template>Me alegro</template>
 	</category>
-	
+
 	<!-- Regla 3 -->
 	<category>
 		<pattern>Como te llamas</pattern>
@@ -28,24 +28,39 @@
 			Mi nombre es <bot name="name"/>, como te llamas tu?
 		</template>
 	</category>
-	
+
 	<!-- Regla 4 -->
 	<category>
 		<pattern>Me llamo *</pattern>
 		<template>
 			Encantado, <star/>
-			<addtoset>
-				<name>usuario</name>
-				<key><star/></key>
-			</addtoset>	
+			<think>
+				<set var="miNombre"><star/></set>
+				<condition var="miNombre">
+					<li value="unknown">
+						<addtomap>
+							<name>usuario</name>
+							<key>usuario</key>
+							<value><star/></value>
+						</addtomap>
+					</li>
+					<li>
+						<modifymap>
+							<name>usuario</name>
+							<key>usuario</key>
+							<value><star/></value>
+						</modifymap>
+					</li>
+				</condition>
+			</think>
 		</template>
 	</category>
-	
+
 	<!-- Regla 5 -->
 	<category>
 		<pattern>^ como me llamo ^</pattern>
 		<template>
-			Te llamas <readset>usuario</readset>
+			Te llamas <map name="usuario">usuario</map>
 		</template>
 	</category>
 
@@ -54,14 +69,29 @@
 		<pattern>*</pattern>
 		<that>MI NOMBRE ES *</that>
 		<template>
-			Encantado
-			<addtoset>
-				<name>usuario</name>
-				<key><star/></key>
-			</addtoset>	
+			Encantado, <star/>
+			<think>
+				<set var="miNombre"><star/></set>
+				<condition var="miNombre">
+					<li value="unknown">
+						<addtomap>
+							<name>usuario</name>
+							<key>usuario</key>
+							<value><star/></value>
+						</addtomap>
+					</li>
+					<li>
+						<modifymap>
+							<name>usuario</name>
+							<key>usuario</key>
+							<value><star/></value>
+						</modifymap>
+					</li>
+				</condition>
+			</think>
 		</template>
 	</category>
-	
+
 	<!-- Regla 7 -->
 	<category>
 		<pattern>Adios ^</pattern>
@@ -77,7 +107,7 @@
 			</think>
 		</template>
 	</category>
-	
+
 	<topic name="despedidaTriste">
 		<!-- Regla 8 -->
 		<category>
@@ -122,7 +152,7 @@
 			AU AU AU
 		</template>
 	</category>
-	
+
 	<!-- Regla 13 -->
 	<category>
 		<pattern>This is Esparta</pattern>
@@ -192,6 +222,23 @@
 		<pattern>Cual es tu pelicula favorita+ ^ ^</pattern>
 		<template>
 			Es <bot name="pelifavorita"/>
+		</template>
+	</category>
+
+	<!-- Regla 22 -->
+	<category>
+		<pattern>Te odio</pattern>
+		<template>
+			Jo, tu a mi me caes bien
+		</template>
+	</category>
+
+	<!-- Regla 23 -->
+	<category>
+		<pattern>^ mal ^</pattern>
+		<that>QUE TAL</that>
+		<template>
+			Que te pasa? Puedes hablar conmigo lo que necesites
 		</template>
 	</category>
 
