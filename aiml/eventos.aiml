@@ -2,7 +2,7 @@
 	<aiml version="2.0">
 
 	<!-- Falta:
-			- Modificar invitados, fecha, hora y título
+			- Modificar invitados, fecha y hora
 			- Contar eventos de una fecha
 																	-->
 
@@ -29,9 +29,9 @@
 			<that>DE ACUERDO, DIME EL TITULO DEL EVENTO</that>
 			<template>
 				<think>
-					<set name="nuevoTitulo"><srai>ponerbarrabaja <star/></srai></set>
+					<set name="nuevoTitulo"><star/></set>
 				</think>
-				Guardado, dime ahora la fecha de <get name="nuevoTitulo"/> siguiendo el siguiente formato: <date jformat="d M yyyy"/>
+				Guardado, dime ahora la fecha de "<get name="nuevoTitulo"/>" siguiendo el siguiente formato: <date jformat="d M yyyy"/>
 			</template>
 		</category>
 
@@ -308,7 +308,16 @@
 		<!-- Regla  -->
 		<category>
 			<pattern>*</pattern>
-			<that>* ALGUIEN MAS</that>
+			<that>^ ALGUIEN MAS</that>
+			<template>
+				No tienes guardado a ese contacto Alguien mas?
+			</template>
+		</category>
+
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>LA FECHA COMPLETA ES *</that>
 			<template>
 				No tienes guardado a ese contacto Alguien mas?
 			</template>
@@ -514,7 +523,7 @@
 	<category>
 		<pattern>^ [cambia modifica actualiza]+ ^ ^ [cita evento reunion aviso recordatorio acontecimiento] ^</pattern>
 		<template>
-			De acuerdo, dime el año del evento que quieres modificar
+			De acuerdo, dime la fecha del evento que quieres modificar
 			<think>
 				<set name="topic">modificarEvento</set>
 			</think>
@@ -640,11 +649,10 @@
 
 		<!-- Regla  -->
 		<category>
-			<pattern>^ [Contactos Fecha Hora Titulo]</pattern>
-			<that>SE VA A MODIFICAR EL EVENTO DEL *</that>
+			<pattern>*</pattern>
 			<template>
 				<think>
-					<set var="cambiar"><star index="2"/></set>
+					<set var="cambiar"><star/></set>
 					<condition var="cambiar">
 						<li value="contactos">
 							<set name="topic">cambiarPersonas</set>
@@ -652,7 +660,7 @@
 						</li>
 						<li value="fecha">
 							<set name="topic">cambiarDia</set>
-							<set var="respuesta">Cual es el nuevo año?</set> 
+							<set var="respuesta">Ahora dime la nueva fecha del evento</set> 
 						</li>
 						<li value="hora">
 							<set name="topic">cambiarHora</set>
@@ -664,21 +672,24 @@
 						</li>
 					</condition>
 				</think>
-
-
+				<get var="respuesta"/>
 			</template>
 		</category>
 
 		<!-- Regla  -->
 		<category>
 			<pattern>Nada ^</pattern>
-			<that>SE VA A MODIFICAR EL EVENTO DEL *</that>
 			<template>
-				Entonces no modifico nada nada
+				Entonces no modifico nada
 			</template>
 		</category>
 	</topic>
-
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
 	<topic name="cambiarPersonas">
 		<!-- Regla  -->
 		<category>
@@ -705,8 +716,8 @@
 			<template>
 				Ya esta añadido al evento
 				<think>
-					<set var="invitados"><map name="evper">claveModificarFechaHora</map></set>
-					<condition>
+					<set var="comprobacion"><map name="evper"><get name="claveModificarFechaHora"/></map></set>
+					<condition var="comprobacion">
 						<li value="unknown">
 							<modifymap>
 								<name>evper</name>
@@ -718,13 +729,145 @@
 							<modifymap>
 								<name>evper</name>
 								<key><get name="claveModificarFechaHora"/></key>
-								<value><map name="evper">claveModificarFechaHora</map>/<star/></value>
+								<value><map name="evper"><get name="claveModificarFechaHora"/></map> <star/></value>
 							</modifymap>
 						</li>
 					</condition>
 				</think>
 			</template>
 		</category>
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- Regla  -->
+		<category>
+			<pattern><set>apellidos</set></pattern>
+			<that>CUAL ES EL APELLIDO DE LA PERSONA A QUITAR *</that>
+			<template>
+				Ya esta quitado del evento
+				<think>
+					<set var="comprobacion"><srai>finditem <star/> in <map name="evper"><get name="claveModificarFechaHora"/></map></srai></set>
+					<condition var="comprobacion">
+						<li value="0">
+							<get var="comprobacion"/>
+						</li>
+						<li>
+							<set var="nuevoValor"><srai>removeitem <get name="comprobacion"/> in <map name="evper"><get name="claveModificarFechaHora"/></map></srai></set>
+							<modifymap>
+								<name>evper</name>
+								<key><get name="claveModificarFechaHora"/></key>
+								<value><get var="nuevoValor"/></value>
+							</modifymap>
+						</li>
+					</condition>
+				</think>
+			</template>
+		</category>
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>CUAL ES EL APELLIDO DE LA PERSONA *</that>
+			<template>
+				No tienes ninguna persona en la agenda con ese nombre
+			</template>
+		</category>
 	</topic>
 
+	<topic name="cambiarTitulo">
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>CUAL ES EL NUEVO TITULO</that>
+			<template>
+				Ya esta cambiado el titulo
+				<think>
+					<modifymap>
+						<name>evento</name>
+						<key><get name="claveModificarFechaHora"/></key>
+						<value><star/></value>
+					</modifymap>
+				</think>
+			</template>
+		</category>
+	</topic>
+
+	<topic name="cambiarDia">
+		<!-- Regla  -->
+		<category>
+			<pattern>*</pattern>
+			<that>* DIME * FECHA *</that>
+			<template>
+				<think>
+					<set name="nuevaFecha"><star/></set>
+					<set var="comprobacionFecha"><srai>validdate <star/></srai></set>
+					<condition var="comprobacionFecha">
+						<li value="YES">
+							<set var="hablar">Ya he modificado la fecha del evento</set>
+							<set name="nuevaFecha"><srai>ponerdiagonal <get name="nuevaFecha"/></srai></set>
+							<set name="nuevaFecha"><get name="nuevaFecha"/>_<get name="modificarHora"/></set>
+							<set var="tituloAux"><map name="evento"><get name="claveModificarFechaHora"/></map></set>
+							<set var="personasAux"><map name="evper"><get name="claveModificarFechaHora"/></map></set>
+							<removefrommap>
+								<name>evento</name>
+								<key><get name="claveModificarFechaHora"/></key>
+							</removefrommap>
+							<addtomap>
+								<name>evento</name>
+								<key><get name="nuevaFecha"/></key>
+								<value><get var="tituloAux"/></value>
+							</addtomap>
+							<removefrommap>
+								<name>evper</name>
+								<key><get name="claveModificarFechaHora"/></key>
+							</removefrommap>
+							<addtomap>
+								<name>evper</name>
+								<key><get name="nuevaFecha"/></key>
+								<value><get var="personasAux"/></value>
+							</addtomap>
+							<removefromset>
+								<name>fecha_hora</name>
+								<key><get name="claveModificarFechaHora"/></key>
+							</removefromset>
+							<addtoset>
+								<name>fecha_hora</name>
+								<key><get name="nuevaFecha"/></key>
+							</addtoset>
+							<set var="comprobacionMomentos"><map name="momentos"><srai>ponerdiagonal <star/></srai></map></set>
+							<condition var="comprobacionMomentos">
+								<li value="unknown">
+									<addtomap>
+										<name>momentos</name>
+										<key><srai>ponerdiagonal <star/></srai></key>
+										<value><get name="modificarHora"/></value>
+									</addtomap>
+								</li>
+								<li>
+									<modifymap>
+										<name>momentos</name>
+										<key><srai>ponerdiagonal <star/></srai></key>
+										<value><map name="momentos"><srai>ponerdiagonal <star/></srai></map> <get name="modificarHora"/></value>
+									</modifymap>
+								</li>
+							</condition>
+						</li>
+						<li value="NO">
+							<set var="hablar">No has dicho una fecha valida, dime otra vez la fecha que quieres poner siguiendo el siguiente formato: <date jformat="dd MM yyyy"/></set>
+						</li>
+					</condition>
+				</think>
+				<get var="hablar"/>
+			</template>
+		</category>
+	</topic>
+		
 	</aiml>
