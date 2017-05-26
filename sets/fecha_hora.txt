@@ -1,7 +1,1 @@
-08/unknown/2022_1700
-10/09/2017_0900
-02/02/2020_0230
-25/05/2017_0900
-25/05/2017_0800
-02/02/2020_0900
-29/5/2020_2000
+#Línea auxiliar para que FINDITEM funcione correctamente

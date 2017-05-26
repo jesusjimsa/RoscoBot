@@ -1,6 +1,0 @@
-olviadlo:pepe perez
-perez_perez:pepe
-perez:jose
-jimenez:jesus
-jimenez_sanchez:jesus
-sanchez:mangeles

@@ -1,5 +1,0 @@
-perez_perez:23456
-perez:4567
-jimenez:2345
-jimenez_sanchez:620621835
-sanchez:690938899
