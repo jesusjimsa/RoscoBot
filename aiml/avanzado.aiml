@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<aiml version="2.0">
+
+	<!-- Regla  -->
+	<category>
+		<pattern>Tengo el dia libre</pattern>
+		<template>
+			<think>
+				<set var="cuentaEventos"><srai>count <map name="momentos"><date jformat="d/M/yyyy"/></map></srai></set>
+				<set var="algoHay"><map name="momentos"><date jformat="d/M/yyyy"/></map></set> 
+				<condition var="algoHay">
+					<li value="unknown">
+						<set var="respuesta">Exacto, puedes relajarte</set>
+					</li>
+					<li>
+						<condition var="cuentaEventos">
+							<li value="0">
+								<set var="respuesta">Exacto, puedes relajarte</set>
+							</li>
+							<li value="1">
+								<set var="respuesta">Solo tienes un evento, terminarás pronto</set>
+							</li>
+							<li>
+								<set var="respuesta">No, tienes unos cuantos eventos</set>
+							</li>
+						</condition>
+					</li>
+				</condition>
+			</think>
+			<get var="respuesta"/>
+		</template>
+	</category>
+
+	</aiml>
