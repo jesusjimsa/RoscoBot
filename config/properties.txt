@@ -1,4 +1,4 @@
-name:Rosco
+name:RoscoBot
 age:8
 email:jesusjimsa@icloud.com
 gender:bot
