@@ -25,7 +25,7 @@
 		<!-- Regla 3 -->
 		<category>
 			<pattern>* ^</pattern>
-			<that>AHORA DIME EL APELLIDO DE *</that>
+			<that>^ AHORA DIME EL APELLIDO DE *</that>
 			<template>
 				<think>
 					<set var="apellidoCompuesto"><star index="2"/></set>
@@ -59,9 +59,9 @@
 		<!-- Regla 4 -->
 		<category>
 			<pattern><set>apellidos</set></pattern>
-			<that>AHORA DIME EL APELLIDO DE *</that>
+			<that>^ AHORA DIME EL APELLIDO DE *</that>
 			<template>
-				Ya tienes un contacto con ese apellido
+				Ya tienes un contacto con ese apellido, ahora dime el apellido de nuevo, pero esta vez que no sea repetido
 			</template>
 		</category>
 
@@ -90,6 +90,15 @@
 
 		<!-- Regla 7 -->
 		<category>
+			<pattern>*</pattern>
+			<that>POR FAVOR INTRODUCE UN TELEFONO VALIDO</that>
+			<template>
+				Por favor introduce un telefono valido
+			</template>
+		</category>
+
+		<!-- Regla 8 -->
+		<category>
 			<pattern><set>number</set></pattern>
 			<that>POR FAVOR INTRODUCE UN TELEFONO VALIDO</that>
 			<template>
@@ -102,7 +111,7 @@
 			</template>
 		</category>
 
-		<!-- Regla 8 -->
+		<!-- Regla 9 -->
 		<category>
 			<pattern>*</pattern>
 			<that>* AÑADIDO A * DIME AHORA LA DIRECCION</that>
@@ -117,7 +126,7 @@
 		</category>
 	</topic>
 
-	<!-- Regla 9 -->
+	<!-- Regla 10 -->
 	<category>
 		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] ^ <set>apellidos</set></pattern>
 		<template>
@@ -129,7 +138,7 @@
 		</template>
 	</category>
 
-	<!-- Regla 10 -->
+	<!-- Regla 11 -->
 	<category>
 		<pattern>[Muestrame Dime Enseñame Cual Abre Donde Mostrar Dame] ^ [direccion calle domicilio vivienda hogar vive reside] ^ <set>apellidos</set></pattern>
 		<template>
@@ -137,7 +146,7 @@
 		</template>
 	</category>
 
-	<!-- Regla 11 -->
+	<!-- Regla 12 -->
 	<category>
 		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] ^ [telefono movil] ^ <set>apellidos</set></pattern>
 		<template>
@@ -145,7 +154,7 @@
 		</template>
 	</category>
 
-	<!-- Regla 12 -->
+	<!-- Regla 13 -->
 	<category>
 		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] ^ nombre ^ <set>apellidos</set></pattern>
 		<template>
@@ -153,7 +162,7 @@
 		</template>
 	</category>
 
-	<!-- Regla 13 -->
+	<!-- Regla 14 -->
 	<category>
 		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] ^ todos [los mis] contactos</pattern>
 		<template>
@@ -161,7 +170,7 @@
 		</template>
 	</category>
 
-	<!-- Regla 14 -->
+	<!-- Regla 15 -->
 	<category>
 		<pattern>[Muestrame Dime Enseñame Cual Abre Mostrar Dame] *</pattern>
 		<template>
@@ -169,7 +178,7 @@
 		</template>
 	</category>
 
-	<!-- Regla 15 -->
+	<!-- Regla 16 -->
 	<category>
 		<pattern>^ [cambia modifica actualiza]+ ^ ^ <set>apellidos</set></pattern>
 		<template>
@@ -181,7 +190,7 @@
 	</category>
 
 	<topic name="modificarContacto">
-		<!-- Regla 16 -->
+		<!-- Regla 17 -->
 		<category>
 			<pattern>^ nombre ^</pattern>
 			<that>DE ACUERDO, QUE QUIERES CAMBIAR DE *</that>
@@ -190,7 +199,7 @@
 			</template>
 		</category>
 
-		<!-- Regla 17 -->
+		<!-- Regla 18 -->
 		<category>
 			<pattern>^ [telefono numero] ^</pattern>
 			<that>DE ACUERDO, QUE QUIERES CAMBIAR DE *</that>
@@ -199,7 +208,7 @@
 			</template>
 		</category>
 
-		<!-- Regla 18 -->
+		<!-- Regla 19 -->
 		<category>
 			<pattern>^ [direccion calle] ^</pattern>
 			<that>DE ACUERDO, QUE QUIERES CAMBIAR DE *</that>
@@ -208,24 +217,19 @@
 			</template>
 		</category>
 
-		<!-- Regla 19 -->
-		<category>
-			<pattern>*</pattern>
-			<that>* nombre *</that>
-			<template>
-				Ya esta cambiado ;)
-				<modifymap>
-					<name>nombres</name>
-					<key><get name="apellido"/></key>
-					<value><star/></value>
-				</modifymap>
-			</template>
-		</category>
-
 		<!-- Regla 20 -->
 		<category>
 			<pattern>*</pattern>
-			<that>* telefono *</that>
+			<that>* TELEFONO *</that>
+			<template>
+				Por favor, introduce un telefono valido
+			</template>
+		</category>
+
+		<!-- Regla 21 -->
+		<category>
+			<pattern><set>number</set></pattern>
+			<that>* TELEFONO *</that>
 			<template>
 				Ya esta cambiado ;)
 				<modifymap>
@@ -236,10 +240,10 @@
 			</template>
 		</category>
 
-		<!-- Regla 21 -->
+		<!-- Regla 22 -->
 		<category>
 			<pattern>*</pattern>
-			<that>* direccion *</that>
+			<that>* DIRECCION *</that>
 			<template>
 				Ya esta cambiado ;)
 				<modifymap>
@@ -251,7 +255,7 @@
 		</category>
 	</topic>
 
-	<!-- Regla 22 -->
+	<!-- Regla 23 -->
 	<category>
 		<pattern>^ [elimina quita borra mata]+ ^ ^ <set>apellidos</set> ^</pattern>
 		<template>
@@ -264,7 +268,7 @@
 	</category>
 
 	<topic name="BorrarContacto">
-		<!-- Regla 23 -->
+		<!-- Regla 24 -->
 		<category>
 			<pattern>^ Si ^</pattern>
 			<that>ESTAS SEGURO</that>
@@ -289,7 +293,7 @@
 			</template>
 		</category>
 
-		<!-- Regla 24 -->
+		<!-- Regla 25 -->
 		<category>
 			<pattern>^ No ^</pattern>
 			<that>ESTAS SEGURO</that>
@@ -299,7 +303,7 @@
 		</category>
 	</topic>
 
-	<!-- Regla 25 -->
+	<!-- Regla 26 -->
 	<category>
 		<pattern>^ [eliminar quitar borrar matar] ^ *</pattern>
 		<template>
@@ -307,7 +311,7 @@
 		</template>
 	</category>
 
-	<!-- Regla 26 -->
+	<!-- Regla 27 -->
 	<category>
 		<pattern>Cuantos contactos ^</pattern>
 		<template>
